@@ -1,0 +1,48 @@
+﻿org_id,org_name,aliases,org_type,country,founded_date,date_precision,dissolved_date,status,key_people,role_in_discourse,url,confidence
+ORG-001,All-domain Anomaly Resolution Office,AARO,government_office,US,2022-07,month,,active,Jon Kosloski|Sean Kirkpatrick (fmr)|Tim Phillips,Congressionally mandated DoD/IC office for UAP investigation and reporting,https://www.aaro.mil/,high
+ORG-002,Advanced Aerospace Threat Identification Program,AATIP,government_program,US,2007,year,2012,historical,Luis Elizondo|Harry Reid (sponsor),Pentagon program revealed by the 2017 NYT story,,high
+ORG-003,Advanced Aerospace Weapon System Applications Program,AAWSAP,government_program,US,2008,year,2010,historical,James Lacatski|Colm Kelleher|Robert Bigelow (contractor),Largest acknowledged US government UFO-related contract program,,high
+ORG-004,Unidentified Aerial Phenomena Task Force,UAPTF,government_program,US,2020-08,month,2022,historical,Jay Stratton|David Grusch|Karl Nell,Navy/ODNI-led predecessor to AARO,,high
+ORG-005,Task Force on the Declassification of Federal Secrets,House Oversight Task Force,congressional_body,US,2025,year,,active,Anna Paulina Luna|Eric Burlison|Tim Burchett,House Oversight task force running UAP transparency hearings,https://oversight.house.gov/,high
+ORG-006,Congressional UAP Caucus,UAP Caucus,congressional_body,US,2023,year,,active,Tim Burchett|Jared Moskowitz,Bipartisan House caucus on UAP,,high
+ORG-007,PURSUE Task Force,Presidential Unsealing and Reporting System for UAP Encounters,government_program,US,2026,year,,active,Executive Branch,Presidential UAP records unsealing initiative; released multiple document tranches in 2026,,medium
+ORG-008,UAP Records Collection (NARA),National Archives UAP Collection,government_archive,US,2023,year,,active,,Statutory public collection of UAP records created by Congress,https://www.archives.gov/,medium
+ORG-009,UAP Science Advisory Council,UAPSAC,advisory_body,US,2026-06,month,,active,Avi Loeb,Scientific advisory council serving ODNI/AARO and related agencies,,high
+ORG-010,Mutual UFO Network,MUFON,civilian_research,US,1969,year,,active,Richard Beckwith|Earl Grey Anderson|Jesse Peak,Largest civilian UFO investigation network; field investigator corps and case database,https://mufon.com/,high
+ORG-011,Center for UFO Studies,CUFOS,civilian_research,US,1973,year,,active,Mark Rodeghier|J. Allen Hynek (founder),Case archive and scientific analysis body founded by Hynek,https://cufos.org/,high
+ORG-012,National Investigations Committee on Aerial Phenomena,NICAP,civilian_research,US,1956,year,1980,historical,Donald Keyhoe,First major civilian challenge to official secrecy,,high
+ORG-013,Scientific Coalition for UAP Studies,SCU,scientific_nonprofit,US,2017,year,,active,Robert Powell|Kevin Knuth,Peer-review-oriented analysis of military and sensor UAP cases,https://www.explorescu.org/,high
+ORG-014,The Galileo Project,,academic_research,US,2021-07,month,,active,Avi Loeb,Harvard-based instrumented search for anomalous objects,https://projects.iq.harvard.edu/galileo,high
+ORG-015,The Sol Foundation,Sol,academic_policy,US,2023-11,month,,active,Garry Nolan|Peter Skafish,Academic and policy research organisation on UAP and post-disclosure implications,https://thesolfoundation.org/,high
+ORG-016,The Disclosure Foundation,UAP Disclosure Fund (former name),advocacy_policy,US,2024,year,,active,Christopher Mellon (chair)|Jordan Flowers (exec dir),"Policy research, legal support and congressional reform advocacy for UAP disclosure",,high
+ORG-017,Americans for Safe Aerospace,ASA,advocacy_nonprofit,US,2023,year,,active,Ryan Graves,Pilot-reporting and aviation-safety advocacy on UAP,https://www.americansforsafeaerospace.org/,high
+ORG-018,New Paradigm Institute,NPI,advocacy_legal,US,2022,year,,active,Daniel P. Sheehan,Legal and citizen-advocacy arm of the disclosure movement,https://newparadigminstitute.org/,high
+ORG-019,Paradigm Research Group,PRG,lobbying,US,1996,year,,active,Stephen Bassett,Registered lobbying for UFO/ET disclosure; Citizen Hearing on Disclosure (2013),https://www.paradigmresearchgroup.org/,high
+ORG-020,To The Stars Academy of Arts & Science,TTSA,private_company,US,2017-10,month,,active,Tom DeLonge|Jim Semivan|Hal Puthoff|Luis Elizondo (fmr),Vehicle through which former officials entered public UAP discourse in 2017,https://tothestars.media/,high
+ORG-021,Skywatcher,,private_company,US,2024,year,,active,Jake Barber|James Fowler,Commercial venture claiming to detect and interact with UAP using multi-spectrum sensing,,medium
+ORG-022,Bigelow Aerospace Advanced Space Studies,BAASS,private_contractor,US,2008,year,2010,historical,Robert Bigelow|Colm Kelleher,Prime contractor on AAWSAP,,high
+ORG-023,Bigelow Institute for Consciousness Studies,BICS,private_research,US,2020,year,,active,Robert Bigelow,Funds research on survival of consciousness; adjacent to UAP research networks,https://www.bigelowinstitute.org/,medium
+ORG-024,Skinwalker Ranch,,research_site,US,1994,year,,active,Brandon Fugal|Travis Taylor|Robert Bigelow (fmr owner),Utah property central to AAWSAP-era research and a long-running TV series,,high
+ORG-025,The Black Vault,,archive,US,1996,year,,active,John Greenewald Jr.,Largest privately run FOIA document archive relevant to UAP,https://www.theblackvault.com/,high
+ORG-026,The Debrief,,media_outlet,US,2020,year,,active,Tim McMillan,Science and defence outlet that broke the Grusch story with Kean and Blumenthal,https://thedebrief.org/,high
+ORG-027,Liberation Times,,media_outlet,UK,2022,year,,active,Christopher Sharp,Continuous UAP news beat; frequently first with insider allegations,https://www.liberationtimes.com/,high
+ORG-028,NewsNation,,media_outlet,US,2020,year,,active,Ross Coulthart,Cable network that has aired major UAP whistleblower exclusives,https://www.newsnationnow.com/,high
+ORG-029,PARADIGM,paradigm.news,media_outlet,US,2026,year,,active,,New UAP-focused reporting outlet; unmasked the 'Whistling Mike' source in 2026,https://www.paradigm.news/,medium
+ORG-030,Metabunk,,skeptic_community,US,2013,year,,active,Mick West,Principal hub for technical debunking and video analysis,https://www.metabunk.org/,high
+ORG-031,NARCAP,National Aviation Reporting Center on Anomalous Phenomena,aviation_research,US,1999,year,,active,Richard Haines,Pilot-sighting and aviation-safety analysis,https://www.narcap.org/,medium
+ORG-032,UAPx,,field_research,US,2021,year,,active,Gary Voorhis|Kevin Day|Matthew Szydagis,Instrumented field expeditions and data collection,https://uapexpedition.org/,medium
+ORG-033,Project Hessdalen,,field_research,NO,1983,year,,active,Erling Strand,Longest continuously running instrumented monitoring of anomalous lights,http://www.hessdalen.org/,medium
+ORG-034,GEPAN / SEPRA / GEIPAN (CNES),GEIPAN,government_office,FR,1977,year,,active,Claude Poher|Jean-Jacques Velasco,French state UAP study group within the national space agency,https://www.cnes-geipan.fr/,high
+ORG-035,NASA UAP Independent Study Team,,advisory_body,US,2022-10,month,2023-09,historical,David Spergel|Iain Boyd|Michael Gold,Produced NASA's independent UAP report in September 2023,https://www.nasa.gov/uap/,high
+ORG-036,Project Blue Book,,government_program,US,1952,year,1969,historical,Edward J. Ruppelt|J. Allen Hynek,US Air Force's public UFO investigation program,,high
+ORG-037,The Disclosure Project,,advocacy,US,2001,year,,active,Steven Greer,2001 National Press Club witness event; long-running disclosure campaign,https://siriusdisclosure.com/,high
+ORG-038,Merged Point,,private_company,US,2022,year,,active,Ryan Graves,Company behind the MERGED podcast and pilot-reporting work,https://www.mergedpodcast.com/,medium
+ORG-039,KGRA Digital Broadcasting,,podcast_network,US,2014,year,,active,Jimmy Church|Don Ecker|Sev Tok,Network hosting many UFO/paranormal shows,https://kgradb.com/,medium
+ORG-040,The Dark Horde Network,,podcast_network,US,2016,year,,active,Manny Sifonte,Podcast network for UAP and fringe shows,,low
+ORG-041,Vanguard Enterprise,,nonprofit_support,US,2026,year,,active,Matthew Brown,Nonprofit supporting UAP whistleblowers,https://vanguardenterprise.org,medium
+ORG-042,Immaculate Constellation,,alleged_program,US,,unknown,,alleged,Matthew Brown (source)|Michael Shellenberger (publisher),Alleged unacknowledged special access program for global UAP imagery collection; existence disputed,,medium
+ORG-043,The Skeptics Society / Skeptic Magazine,,skeptic_organization,US,1992,year,,active,Michael Shermer,Principal institutional home of organised scientific skepticism engaging UAP claims,https://www.skeptic.com/,high
+ORG-044,New Thinking Allowed,,media_archive,US,2015,year,,active,Jeffrey Mishlove,Large interview archive on consciousness and psi research adjacent to UAP discourse,https://newthinkingallowed.org/,medium
+ORG-045,CERO (Close Encounters Research Organization),,experiencer_support,US,1992,year,,active,Yvonne Smith,Experiencer support and regression research group,,low
+ORG-046,Caladan Oceanic,,private_company,US,2018,year,,active,Victor Vescovo,Deep-ocean exploration outfit referenced in USO/ocean-anomaly discussions,,low
+ORG-047,SNX Radio,SUBN8IONX,podcast_network,US,2025,year,,active,Coley Weber,Live experiencer-focused radio and podcast platform,,low

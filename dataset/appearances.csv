@@ -1,0 +1,120 @@
+﻿appearance_id,person_id,person_name,podcast_id,podcast_name,role,episode_title,episode_date,date_precision,topic_tags,source_url,confidence,provenance
+APP-001,UP-0168,Jeremy Corbell,POD-001,WEAPONIZED,host,,2023-01,month,host_role,,high,seed_corpus
+APP-002,UP-0042,George Knapp,POD-001,WEAPONIZED,co_host,,2023-01,month,host_role,,high,seed_corpus
+APP-003,UP-0167,Ross Coulthart,POD-002,Need To Know,co_host,,2021-12,month,host_role,,high,seed_corpus
+APP-004,UP-0169,Bryce Zabel,POD-002,Need To Know,co_host,,2021-12,month,host_role,,high,seed_corpus
+APP-005,UP-0183,Andy McGrillen,POD-003,That UFO Podcast,host,,2020-05,month,host_role,,high,seed_corpus
+APP-006,UP-0184,Ryan Sprague,POD-004,Somewhere in the Skies,host,,2017-04,month,host_role,,high,seed_corpus
+APP-007,UP-0175,Jesse Michels,POD-005,American Alchemy,host,,2024-10,month,host_role,,high,seed_corpus
+APP-008,UP-0033,Ryan Graves,POD-006,MERGED,host,,2023,year,host_role,,high,seed_corpus
+APP-009,UP-0397,Jake Barber,POD-005,American Alchemy,guest,UFO Crash Retrieval: Jake Barber's Firsthand Account,2025-01-30,day,crash_retrieval|whistleblower,https://podcasts.apple.com/us/podcast/ufo-crash-retrieval-jake-barbers-firsthand-account/id1771917740?i=1000687305399,high,seed_corpus
+APP-010,UP-0448,James Fowler,POD-005,American Alchemy,guest,Meet The Startup Summoning UFOs: Skywatcher,2025-05,month,skywatcher|detection,https://pod.wave.co/podcast/american-alchemy/meet-the-startup-summoning-ufos-skywatcher-929440ba,high,seed_corpus
+APP-011,UP-0175,Jesse Michels,POD-056,The Joe Rogan Experience,guest,JRE #2331,2025-06-03,day,uap|silicon_valley,,medium,seed_corpus
+APP-012,UP-0174,Jay Anderson,POD-056,The Joe Rogan Experience,guest,JRE #2430,2025-12-24,day,uap|ancient_mysteries,https://podcasts.apple.com/us/podcast/2430-jay-anderson/id360084272?i=1000742619732,high,seed_corpus
+APP-013,UP-0174,Jay Anderson,POD-010,Project Unity,host,,2019,year,host_role,,high,seed_corpus
+APP-014,UP-0317,Alex Dietrich,POD-006,MERGED,guest,Pilot-to-pilot discussion,,unknown,nimitz|pilot_experience,https://www.mergedpodcast.com/,medium,seed_corpus
+APP-015,UP-0059,Avi Loeb,POD-003,That UFO Podcast,guest,,2026,year,science|galileo_project,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-016,UP-0206,James Fox,POD-003,That UFO Podcast,guest,,2026,year,documentary|varginha,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-017,UP-0206,James Fox,POD-001,WEAPONIZED,guest,,2026,year,documentary,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-018,UP-0075,Jacques Vallee,POD-001,WEAPONIZED,guest,,2026,year,theory|history,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-019,UP-0206,James Fox,POD-007,Podcast UFO,guest,,2026,year,documentary,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-020,UP-0059,Avi Loeb,POD-021,UAP Unidentified Alien Podcast,guest,,2026,year,science,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-021,UP-0206,James Fox,POD-021,UAP Unidentified Alien Podcast,guest,,2026,year,documentary,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-022,UP-0445,Kathleen Marden,POD-020,AREA52 - DEBRIEFED,guest,,2026,year,abduction|hill_case,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-023,UP-0152,Nick Pope,POD-050,UFO - Extraterrestrial Reality,guest,,2026,year,mod|international,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-024,UP-0206,James Fox,POD-023,Down to Earth with Kristian Harloff,guest,,2026,year,documentary,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-025,UP-0472,Palmer Luckey,POD-023,Down to Earth with Kristian Harloff,guest,,2026,year,defense_tech|sensors,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-026,UP-0449,Caroline Cory,POD-055,TruthSeekah UFO network shows,recurring_guest,,2026,year,consciousness|contact,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-027,UP-0036,Luis Elizondo,POD-034,UFO and ET 101,guest,,2026,year,aatip|disclosure,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-028,UP-0397,Jake Barber,POD-034,UFO and ET 101,guest,,2026,year,crash_retrieval,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-029,UP-0108,Jordan Flowers,POD-035,WTUFO,guest,,2026,year,policy|disclosure_foundation,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-030,UP-0275,Stephen Bassett,POD-036,Coffee & UFOs,guest,,2026,year,lobbying|disclosure,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-031,UP-0451,Philip Mantle,POD-022,UAP Files Podcast,guest,,2026,year,research|publishing,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-032,UP-0450,Preston Dennett,POD-015,MUFON Contact Radio,guest,,2026,year,case_research,https://podcast.feedspot.com/ufo_podcasts/,medium,seed_corpus
+APP-033,UP-0003,Tim Phillips,POD-003,That UFO Podcast,guest,,2025-06,month,aaro|interdimensional_comment,https://medium.com/@EscapeVelocity1/the-magnificent-backfiring-of-the-wall-street-journal-article-on-the-dods-longstanding-ufo-secrecy-25449544f06d,medium,seed_corpus
+APP-034,UP-0168,Jeremy Corbell,POD-056,The Joe Rogan Experience,recurring_guest,,,unknown,video_releases|investigation,,medium,seed_corpus
+APP-035,UP-0394,Bob Lazar,POD-056,The Joe Rogan Experience,guest,,,unknown,area_51|s4,,medium,seed_corpus
+APP-036,UP-0447,Daniel P. Sheehan,POD-016,Full Disclosure with Danny Sheehan,host,,2024-10,month,host_role,,high,seed_corpus
+APP-037,UP-0180,Matt Ford,POD-009,The Good Trouble Show,host,,2023-03,month,host_role,,high,seed_corpus
+APP-038,UP-0200,Matt Laslo,POD-018,Ask a Pol UAPs,host,,2025-04,month,host_role,,high,seed_corpus
+APP-039,UP-0290,Grant Cameron,POD-017,The Paranormal UFO Consciousness Podcast,host,,2021-03,month,host_role,,high,seed_corpus
+APP-040,UP-0178,Chris Lehto,POD-019,Lehto Files,host,,2025,year,host_role,,high,seed_corpus
+APP-041,UP-0461,Kelly Chase,POD-012,Cosmosis,host,,2021-12,month,host_role,,high,seed_corpus
+APP-042,UP-0462,James Iandoli,POD-011,Engaging The Phenomenon,host,,2021-04,month,host_role,,high,seed_corpus
+APP-043,UP-0193,Patrick Scott Armstrong,POD-008,Vetted,host,,2024-05,month,host_role,,high,seed_corpus
+APP-044,UP-0372,Mick West,POD-064,Tales From the Rabbit Hole,host,,2020,year,host_role,,medium,seed_corpus
+APP-045,UP-0216,Steven Greenstreet,POD-065,The Basement Office,host,,2019,year,host_role,,medium,seed_corpus
+APP-046,UP-0170,Richard Dolan,POD-066,The Richard Dolan Show,host,,2019,year,host_role,,medium,seed_corpus
+APP-047,UP-0367,Whitley Strieber,POD-058,Dreamland,host,,1999,year,host_role,,medium,seed_corpus
+APP-048,UP-0171,George Noory,POD-057,Coast to Coast AM,host,,2003,year,host_role,,high,seed_corpus
+APP-049,UP-0214,Linda Moulton Howe,POD-057,Coast to Coast AM,recurring_guest,,,unknown,earthfiles|reporting,,high,seed_corpus
+APP-050,UP-0060,Garry Nolan,POD-060,Theories of Everything,guest,,,unknown,science|materials|biology,,medium,seed_corpus
+APP-051,UP-0313,Mario Woods,POD-005,American Alchemy,guest,Air Force Veterans Abducted By Aliens Reunite After 50 Years,2026-09-07,day,ellsworth_afb|nuclear_sites|regression,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-052,UP-0473,Michael Johnson,POD-005,American Alchemy,guest,Air Force Veterans Abducted By Aliens Reunite After 50 Years,2026-09-07,day,ellsworth_afb|nuclear_sites|regression,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-053,UP-0474,Yvonne Smith,POD-005,American Alchemy,guest,Air Force Veterans Abducted By Aliens Reunite After 50 Years,2026-09-07,day,regression_therapy|experiencers,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-054,UP-0490,Ammar Kandil,POD-005,American Alchemy,co_producer,Air Force Veterans Abducted By Aliens Reunite After 50 Years,2026-09-07,day,production,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-055,UP-0396,Matthew Brown,POD-005,American Alchemy,guest,Pentagon Whistleblower UNLOADS on Alien Hybrid Breeding Programs,2026-08-29,day,immaculate_constellation|sap|whistleblower,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-056,UP-0035,Tim Gallaudet,POD-005,American Alchemy,guest,Top Navy Admiral: The Ocean is Full of UFOs,2026-08-24,day,uso|ocean_hotspots|nuro,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-057,UP-0475,Jeffrey Mishlove,POD-005,American Alchemy,guest,The Man Who Controls a UFO Fleet With His Mind,2026-08-13,day,psi|ted_owens|parapsychology,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-058,UP-0041,Dylan Borland,POD-005,American Alchemy,guest,I Saw a Triangle Shaped UFO At a NASA Hangar,2026-08-05,day,langley|triangle|whistleblower,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-059,UP-0283,Brandon Fugal,POD-005,American Alchemy,guest,There's A UFO Under the Ranch - Skinwalker Owner Breaks Silence,2026-07-26,day,skinwalker|hitchhiker_effect,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-060,UP-0476,Maaneli Derakhshani,POD-005,American Alchemy,guest,Proof That NASA Censored Moon Photos,2026-07-20,day,apollo|imagery|lunar_anomalies,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-061,UP-0477,Jason Samosa,POD-005,American Alchemy,guest,The UFO Cover-Up Leads to One Secret Society,2026-07-14,day,history|elite_networks|vallee,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-062,UP-0377,Michael Shermer,POD-005,American Alchemy,guest,I Debated UFOs With America's Top Skeptic,2026-07-09,day,skepticism|debate|nimitz|roswell,https://feeds.megaphone.fm/jessemichels,high,seed_corpus
+APP-063,UP-0019,Eric Burlison,POD-005,American Alchemy,guest,Congressman: President Trump Was Briefed On Alien Hybrids,2026-07,month,congress|plasma_orbs|pax_river,https://feeds.megaphone.fm/jessemichels,medium,seed_corpus
+APP-064,UP-0487,Dan Zetterstrom,POD-003,That UFO Podcast,recurring_co_host,Bob Lazar Is Back and the Chuck Clark Footage Is Finally Out,2026-04-15,day,news_analysis|lazar|area_51,,high,seed_corpus
+APP-065,UP-0485,Shane Ryan,POD-003,That UFO Podcast,guest,Westall 66 Revisited,2026-04-06,day,westall|australia|mass_sighting,,high,seed_corpus
+APP-066,UP-0487,Dan Zetterstrom,POD-003,That UFO Podcast,recurring_co_host,Congress Was Briefed on Alien Hybrids?,2026-04-03,day,gaetz|burchett|luna|news_analysis,,high,seed_corpus
+APP-067,UP-0064,Matthew Szydagis,POD-003,That UFO Podcast,guest,"Dr Matthew Szydagis: UFOs, Dark Matter & The Science of UAP",2026-05-12,day,physics|sensors|scu,,high,seed_corpus
+APP-068,UP-0367,Whitley Strieber,POD-003,That UFO Podcast,guest,Whitley Strieber on Transformation 2026,2026,year,experiencers|disclosure|consciousness,,medium,seed_corpus
+APP-069,UP-0486,Darcy Weir,POD-003,That UFO Podcast,guest,Darcy Weir on Dark Alliance and the Secret Space Program,2026,year,documentary|secret_space_program,,medium,seed_corpus
+APP-070,UP-0480,Thomas Winterton,POD-003,That UFO Podcast,guest,Skinwalker Ranch omnibus (archive 2020-2022),2026,year,skinwalker,,medium,seed_corpus
+APP-071,UP-0089,Travis Taylor,POD-003,That UFO Podcast,guest,Skinwalker Ranch omnibus (archive 2020-2022),2026,year,skinwalker|instrumentation,,medium,seed_corpus
+APP-072,UP-0283,Brandon Fugal,POD-003,That UFO Podcast,guest,Skinwalker Ranch omnibus (archive 2020-2022),2026,year,skinwalker,,medium,seed_corpus
+APP-073,UP-0399,Sarah Gamm,POD-003,That UFO Podcast,guest,Sarah Gamm; UAP Task Force analyst Pt.2,2024-10-28,day,uaptf|nga|consciousness,,high,seed_corpus
+APP-074,UP-0483,Graeme Rendall,POD-003,That UFO Podcast,guest,Graeme Rendall; UFOs before Roswell,2024-10-02,day,history|foo_fighters|pre_roswell,,high,seed_corpus
+APP-075,UP-0484,Andy Thomas,POD-003,That UFO Podcast,guest,"Andy Thomas; UFOs, Crop Circles & Conspiracy pt.2",2024-09-19,day,crop_circles|culture,,high,seed_corpus
+APP-076,UP-0276,Steven Greer,POD-003,That UFO Podcast,subject_of_episode,"Dr Steven Greer & the National Press Club, May 2001 - Deep Dive",2025-04-05,day,disclosure_project|2001_press_club,,high,seed_corpus
+APP-077,UP-0168,Jeremy Corbell,POD-003,That UFO Podcast,recurring_guest,"Jeremy Corbell; UFO Hearings & more, Pt.1",2023-08-06,day,hearings|investigation,https://blubrry.com/that_ufo/archive/?pi=13,high,seed_corpus
+APP-078,UP-0317,Alex Dietrich,POD-003,That UFO Podcast,guest,Hearings Reaction; Alex Dietrich,2023-08-02,day,nimitz|flight_safety|hearings,https://blubrry.com/that_ufo/archive/?pi=13,high,seed_corpus
+APP-079,UP-0196,Tim McMillan,POD-003,That UFO Podcast,guest,"Hearings Reaction; Tim McMillan, The Debrief",2023-07-29,day,journalism|hearings,https://blubrry.com/that_ufo/archive/?pi=13,high,seed_corpus
+APP-080,UP-0506,TinyKlaus,POD-003,That UFO Podcast,guest,Breaking News Pod; UFO Hearings Reaction,2023-07-26,day,hearings|reaction,https://blubrry.com/that_ufo/archive/?pi=13,high,seed_corpus
+APP-081,UP-0483,Graeme Rendall,POD-003,That UFO Podcast,guest,Breaking News Pod; UFO Hearings Reaction,2023-07-26,day,hearings|reaction,https://blubrry.com/that_ufo/archive/?pi=13,high,seed_corpus
+APP-082,UP-0017,Tim Burchett,POD-003,That UFO Podcast,guest,Rep. Tim Burchett & special guest,2023-07-19,day,congress|hearings,https://blubrry.com/that_ufo/archive/?pi=13,high,seed_corpus
+APP-083,UP-0170,Richard Dolan,POD-003,That UFO Podcast,guest,"Richard Dolan, Part 2",2023-07-03,day,history|national_security_state,https://blubrry.com/that_ufo/archive/?pi=13,high,seed_corpus
+APP-084,UP-0290,Grant Cameron,POD-003,That UFO Podcast,guest,Announced upcoming guest (April 2025),2025-04,month,consciousness|presidential_records,,low,seed_corpus
+APP-085,UP-0488,Melinda Leslie,POD-003,That UFO Podcast,guest,Announced upcoming guest (April 2025),2025-04,month,experiencers|reabduction,,low,seed_corpus
+APP-086,UP-0200,Matt Laslo,POD-003,That UFO Podcast,guest,Announced upcoming guest (April 2025),2025-04,month,congress|journalism,,low,seed_corpus
+APP-087,UP-0397,Jake Barber,POD-003,That UFO Podcast,subject_of_episode,Skywatcher update news drop,2025-04-03,day,skywatcher|crash_retrieval,,medium,seed_corpus
+APP-088,UP-0394,Bob Lazar,POD-056,The Joe Rogan Experience,guest,JRE #1315 - Bob Lazar & Jeremy Corbell,2019-06-20,day,area_51|s4|element_115,,medium,seed_corpus
+APP-089,UP-0168,Jeremy Corbell,POD-056,The Joe Rogan Experience,guest,JRE #1315 - Bob Lazar & Jeremy Corbell,2019-06-20,day,area_51|documentary,,medium,seed_corpus
+APP-090,UP-0034,David Fravor,POD-056,The Joe Rogan Experience,guest,JRE - Commander David Fravor,2019-10,month,nimitz|tic_tac,,medium,seed_corpus
+APP-091,UP-0170,Richard Dolan,POD-010,Project Unity,recurring_guest,Interview with Project Unity (recurring series),2023-08,month,history|uapda|analysis,https://richarddolanmembers.com/aliens/interview-with-project-unity/,high,seed_corpus
+APP-092,UP-0174,Jay Anderson,POD-076,Matt Beall Limitless,guest,Jay Anderson (Project Unity),2026-02-26,day,contact|consciousness|ancient_civilizations,https://podcasts.apple.com/lk/podcast/jay-anderson-project-unity-contact-led-to-uap-investigations/id1712917413?i=1000751768278,high,seed_corpus
+APP-093,UP-0174,Jay Anderson,POD-077,SNX Radio,guest,"Jay Anderson, Founder and Host of Project Unity",2025-10-20,day,platform|community,https://www.podchaser.com/podcasts/snx-radio-5942048/episodes/jay-anderson-founder-and-host-269972753,high,seed_corpus
+APP-094,UP-0462,James Iandoli,POD-078,Up The Vibe,guest,"James Iandoli, Engaging the Phenomenon",,unknown,platform|research,,medium,seed_corpus
+APP-095,UP-0174,Jay Anderson,POD-078,Up The Vibe,recurring_guest,"Hearings, Trump, Drones, Disclosure and More!",2024-12,month,hearings|disclosure_outlook,https://creators.spotify.com/pod/profile/joseph-hodgson9/episodes/Hearings--Trump--Drones--Disclosure-and-More---Jay-Anderson-of-Project-Unity-e2te0qo,medium,seed_corpus
+APP-096,UP-0450,Preston Dennett,POD-078,Up The Vibe,guest,Preston Dennett interview,,unknown,mufon|case_research,,medium,seed_corpus
+APP-097,UP-0502,Paul Hamden,POD-078,Up The Vibe,recurring_guest,The Zeta Connection,,unknown,contact|mediumship,,medium,seed_corpus
+APP-098,UP-0503,Matt Beall,POD-076,Matt Beall Limitless,host,,2024,year,host_role,,medium,seed_corpus
+APP-099,UP-0504,Coley Weber,POD-077,SNX Radio,host,,2025,year,host_role,,medium,seed_corpus
+APP-100,UP-0175,Jesse Michels,POD-008,Vetted,subject_of_episode,Jesse Michels Drops Wild Interview About Skywatcher & Jake Barber,2025-05-24,day,commentary|skywatcher,https://www.vetted.show/episodes/jesse-michels-drops-wild-interview-about-skywatcher-amp-jake-barber,high,seed_corpus
+APP-101,UP-0397,Jake Barber,POD-008,Vetted,subject_of_episode,Jesse Michels Drops Wild Interview About Skywatcher & Jake Barber,2025-05-24,day,skywatcher|crash_retrieval,https://www.vetted.show/episodes/jesse-michels-drops-wild-interview-about-skywatcher-amp-jake-barber,high,seed_corpus
+APP-102,UP-0060,Garry Nolan,POD-008,Vetted,subject_of_episode,Bombshell comments from Dr. Garry Nolan on psionics and DNA,,unknown,psionics|biology,,medium,seed_corpus
+APP-103,UP-0012,Marco Rubio,POD-008,Vetted,subject_of_episode,Rubio comments on The Age of Disclosure,,unknown,age_of_disclosure|policy,,medium,seed_corpus
+APP-104,UP-0206,James Fox,POD-008,Vetted,subject_of_episode,James Fox interview with Jesse Michels; Varginha witness,,unknown,varginha|documentary,,medium,seed_corpus
+APP-105,UP-0495,Bart Sibrel,POD-008,Vetted,subject_of_episode,Charlie Duke vs Bart Sibrel debate on the Danny Jones Podcast,,unknown,moon_landing|debate,,medium,seed_corpus
+APP-106,UP-0496,Charlie Duke,POD-061,Danny Jones Podcast,guest,Charlie Duke vs Bart Sibrel,,unknown,apollo|moon_landing,,medium,seed_corpus
+APP-107,UP-0495,Bart Sibrel,POD-061,Danny Jones Podcast,guest,Charlie Duke vs Bart Sibrel,,unknown,moon_landing|debate,,medium,seed_corpus
+APP-108,UP-0492,Steven Spielberg,POD-003,That UFO Podcast,subject_of_episode,Disclosure Day: Spielberg's UFO Movie - Non-Spoiler Review,2026-06-09,day,film|culture,,high,seed_corpus
+APP-109,UP-0394,Bob Lazar,POD-003,That UFO Podcast,subject_of_episode,Bob Lazar Is Back and the Chuck Clark Footage Is Finally Out,2026-04-15,day,lazar|area_51,,high,seed_corpus
+APP-110,UP-0505,Chuck Clark,POD-003,That UFO Podcast,subject_of_episode,Bob Lazar Is Back and the Chuck Clark Footage Is Finally Out,2026-04-15,day,area_51|footage,,high,seed_corpus
+APP-111,UP-0491,Matt Gaetz,POD-003,That UFO Podcast,subject_of_episode,Congress Was Briefed on Alien Hybrids?,2026-04-03,day,hybrids|congress,,high,seed_corpus
+APP-112,UP-0018,Anna Paulina Luna,POD-003,That UFO Podcast,subject_of_episode,Congress Was Briefed on Alien Hybrids?,2026-04-03,day,video_requests|oversight,,high,seed_corpus
+APP-113,UP-0036,Luis Elizondo,POD-003,That UFO Podcast,subject_of_episode,UFO Files Fallout: What Wasn't Released?,2026-05-13,day,file_release|reaction,,high,seed_corpus
+APP-114,UP-0033,Ryan Graves,POD-003,That UFO Podcast,subject_of_episode,UFO Files Fallout: What Wasn't Released?,2026-05-13,day,file_release|reaction,,high,seed_corpus
+APP-115,UP-0277,Tom DeLonge,POD-003,That UFO Podcast,subject_of_episode,UFO Files Fallout: What Wasn't Released?,2026-05-13,day,file_release|reaction,,high,seed_corpus
+APP-116,UP-0167,Ross Coulthart,POD-003,That UFO Podcast,subject_of_episode,UFO Files Fallout: What Wasn't Released?,2026-05-13,day,file_release|reaction,,high,seed_corpus
+APP-117,UP-0017,Tim Burchett,POD-003,That UFO Podcast,subject_of_episode,UFO Files Fallout: What Wasn't Released?,2026-05-13,day,file_release|reaction,,high,seed_corpus
+APP-AD-001,UP-0507,Michai Morin,POD-010,Project Unity,guest,Project Unity — guest appearance (announced 2026-01-21),2026-01-21,day,uap|interview,https://www.facebook.com/groups/617328327480084/posts/763051809574401/,medium,added
+APP-AD-002,UP-0507,Michai Morin,POD-010,Project Unity,guest,A Presentation on Historical & Modern UAP Trends,,unknown,uap|presentation,https://youtu.be/hhC-VC6Gp4U,medium,added

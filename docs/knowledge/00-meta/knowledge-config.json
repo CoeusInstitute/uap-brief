@@ -1,0 +1,16 @@
+{
+  "schema_version": "2.0.0",
+  "knowledge_root": "docs/knowledge",
+  "routing_map": "docs/knowledge/00-routing-map.md",
+  "machine_state": "~/.cursor/harness-state/project-knowledge/",
+  "initial_read_budget": 4,
+  "preserve_curated_route_fields": true,
+  "lazy_taxonomy": true,
+  "secret_scan": true,
+  "passive_hooks_enabled": false,
+  "harness_only_default": "skip-product-knowledge",
+  "canonical_loop_files": [
+    ".cursor/loop-progress.md",
+    "LOOPS.md"
+  ]
+}

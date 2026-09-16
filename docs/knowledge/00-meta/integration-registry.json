@@ -1,0 +1,28 @@
+{
+  "schema_version": "2.0.0",
+  "updated_at": "2026-09-16T12:31:32+00:00",
+  "authorities": [
+    {
+      "domain": "agent-contracts",
+      "owner": "project-knowledge-archivist",
+      "canonical": "AGENTS.md hierarchy"
+    },
+    {
+      "domain": "project-knowledge",
+      "owner": "project-knowledge-archivist",
+      "canonical": "docs/knowledge/00-routing-map.md"
+    },
+    {
+      "domain": "goal-loop-state",
+      "owner": "goal-loop",
+      "canonical": ".cursor/loop-progress.md"
+    }
+  ],
+  "canonical_loop_files": [
+    {
+      "path": ".cursor/loop-progress.md",
+      "owner": "goal-loop",
+      "purpose": "goal progress and terminal status"
+    }
+  ]
+}

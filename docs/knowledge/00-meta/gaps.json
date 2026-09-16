@@ -1,0 +1,39 @@
+{
+  "gaps": [
+    {
+      "id": "scoring-adr",
+      "topic": "scoring-adr",
+      "status": "closed",
+      "summary": "ADR 0003 accepted 2026-09-16. mix_v2 / score_v2 is the live six-tag set; review is floors only. mix_v1 remains historical.",
+      "trigger": "Closed 2026-09-16. ADR 0003 owns the live tag set and poles."
+    },
+    {
+      "id": "hosted-seed",
+      "topic": "hosted-seed",
+      "status": "closed",
+      "summary": "P1 schema and CSV import applied to hosted UAP-Brief on 2026-09-15. Anon reads public views; wiki uses those views.",
+      "trigger": "Closed 2026-09-15. Schema and CSV import are on hosted UAP-Brief; the wiki reads public views."
+    },
+    {
+      "id": "vercel-project",
+      "topic": "vercel-project",
+      "status": "open",
+      "summary": "Vercel project name and public domain are TBD.",
+      "trigger": "Vercel project name and public domain are TBD."
+    },
+    {
+      "id": "x-follower-floor",
+      "topic": "x-follower-floor",
+      "status": "open",
+      "summary": "Official X API is the access route; 20k watchlist floor is still default-only.",
+      "trigger": "Official X API is the access route; 20k watchlist floor is still default-only."
+    },
+    {
+      "id": "podcast-reach",
+      "topic": "podcast-reach",
+      "status": "open",
+      "summary": "50k subscriber threshold is the owner default, not a confirmed constant.",
+      "trigger": "50k subscriber threshold is the owner default, not a confirmed constant."
+    }
+  ]
+}
