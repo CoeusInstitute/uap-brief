@@ -13,10 +13,15 @@ type SourceRow = {
   name: string;
   homepage_url: string;
   rss_url: string | null;
+  last_fetch_at: string | null;
+  fetch_policy: { interval?: string } | null;
 };
 
 const FEED_PATHS = ["/feed", "/feed/", "/rss", "/rss.xml", "/feed.xml", "/atom.xml", "/index.xml"];
+const RELATIVE_FEED_PATHS = ["feed", "feed/", "rss.xml", "atom.xml", "index.xml"];
 const PER_SOURCE = 15;
+const SOURCE_BATCH = 12;
+const TIME_BUDGET_MS = 105_000;
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
@@ -34,12 +39,17 @@ Deno.serve(async (req) => {
   try {
     const { data: sources, error } = await supabase
       .from("sources")
-      .select("source_id,name,homepage_url,rss_url")
+      .select("source_id,name,homepage_url,rss_url,last_fetch_at,fetch_policy")
       .eq("kind", "news")
-      .eq("active", true);
+      .eq("active", true)
+      .order("last_fetch_at", { ascending: true, nullsFirst: true });
     if (error) throw error;
 
-    for (const source of (sources ?? []) as SourceRow[]) {
+    const due = ((sources ?? []) as SourceRow[]).filter(isDue).slice(0, SOURCE_BATCH);
+    const started = Date.now();
+
+    for (const source of due) {
+      if (Date.now() - started > TIME_BUDGET_MS) break;
       try {
         const siteHost = hostnameOf(source.homepage_url);
         if (!siteHost) throw new Error(`Bad homepage for ${source.name}`);
@@ -112,16 +122,17 @@ Deno.serve(async (req) => {
           }
         }
 
-        await supabase
-          .from("sources")
-          .update({ last_fetch_at: new Date().toISOString() })
-          .eq("source_id", source.source_id);
       } catch (cause) {
         feedsFailed += 1;
         errors.push({
           source: source.name,
           error: cause instanceof Error ? cause.message : String(cause),
         });
+      } finally {
+        await supabase
+          .from("sources")
+          .update({ last_fetch_at: new Date().toISOString() })
+          .eq("source_id", source.source_id);
       }
     }
 
@@ -152,7 +163,41 @@ Deno.serve(async (req) => {
   }
 });
 
+function isDue(source: SourceRow): boolean {
+  if (!source.last_fetch_at) return true;
+  const fetched = new Date(source.last_fetch_at).getTime();
+  if (Number.isNaN(fetched)) return true;
+  return Date.now() - fetched >= intervalMs(source.fetch_policy?.interval);
+}
+
+function intervalMs(raw: string | undefined): number {
+  const match = /^(\d+)\s*([smhd])$/i.exec((raw ?? "2h").trim());
+  if (!match) return 2 * 60 * 60 * 1000;
+  const n = Number(match[1]);
+  const unit = match[2].toLowerCase();
+  if (unit === "s") return n * 1000;
+  if (unit === "m") return n * 60 * 1000;
+  if (unit === "d") return n * 24 * 60 * 60 * 1000;
+  return n * 60 * 60 * 1000;
+}
+
+function homepageHasTopicPath(homepage: string): boolean {
+  try {
+    const path = new URL(homepage).pathname.replace(/\/+$/, "");
+    return path.length > 0;
+  } catch {
+    return false;
+  }
+}
+
 async function discoverFeed(homepage: string, siteHost: string): Promise<string | null> {
+  if (homepageHasTopicPath(homepage)) {
+    for (const path of RELATIVE_FEED_PATHS) {
+      const candidate = new URL(path, homepage.endsWith("/") ? homepage : `${homepage}/`).toString();
+      if (await feedLooksValid(candidate, siteHost)) return candidate;
+    }
+  }
+
   try {
     const home = await fetchFollowingRedirects(
       homepage,

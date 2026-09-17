@@ -3,12 +3,6 @@ import { isScoreTag, type ScoreTag } from "@/lib/types";
 export const CAUTION_TAGS = ["PSYOP", "WOO", "LACKING_DATA"] as const;
 export const SUBSTANCE_TAGS = ["VETTED", "CREDIBLE", "INTERESTING"] as const;
 
-const CAUTION_RANK: Record<(typeof CAUTION_TAGS)[number], number> = {
-  PSYOP: 0,
-  WOO: 1,
-  LACKING_DATA: 2,
-};
-
 const SUBSTANCE_RANK: Record<(typeof SUBSTANCE_TAGS)[number], number> = {
   VETTED: 0,
   CREDIBLE: 1,
@@ -29,7 +23,7 @@ export type MarkerTone = "caution" | "substance" | "tie";
 
 const TAG_LABEL: Record<ScoreTag, string> = {
   PSYOP: "PSYOP",
-  WOO: "Woo",
+  WOO: "Unlikely",
   LACKING_DATA: "Lacking data",
   CREDIBLE: "Credible",
   INTERESTING: "Interesting",
@@ -68,9 +62,23 @@ export function storyAssessment(story: {
   }
   if (scores.size === 0) return null;
   return {
-    caution: pickPole(CAUTION_TAGS, scores, CAUTION_RANK),
+    caution: pickCaution(scores),
     substance: pickPole(SUBSTANCE_TAGS, scores, SUBSTANCE_RANK),
   };
+}
+
+/** LACKING_DATA is residual. PSYOP/WOO must be a real finding (≥ 4) and not clearly behind. */
+const LACKING_MARGIN = 1;
+const POSITIVE_FLOOR = 4;
+
+function pickCaution(scores: Map<ScoreTag, number>): AssessmentPole {
+  const psyop = scores.get("PSYOP") ?? 0;
+  const woo = scores.get("WOO") ?? 0;
+  const lacking = scores.get("LACKING_DATA") ?? 0;
+  const leader: AssessmentPole = psyop >= woo ? { tag: "PSYOP", score: psyop } : { tag: "WOO", score: woo };
+  if (leader.score < POSITIVE_FLOOR) return { tag: "LACKING_DATA", score: lacking };
+  if (lacking > leader.score + LACKING_MARGIN) return { tag: "LACKING_DATA", score: lacking };
+  return leader;
 }
 
 function pickPole<T extends ScoreTag>(

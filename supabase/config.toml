@@ -430,3 +430,9 @@ verify_jwt = false
 
 [functions.enrich-x]
 verify_jwt = false
+
+[functions.gate-stories]
+verify_jwt = false
+
+[functions.translate-stories]
+verify_jwt = false

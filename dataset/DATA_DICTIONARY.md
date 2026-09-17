@@ -23,6 +23,16 @@
 
 ## 2. `people.csv` (849 rows, 43 fields)
 
+### Person photo fields (added 2026-09-16, Track F)
+| Field | Values | Notes |
+| --- | --- | --- |
+| photo_url | URL or null | Public storage URL (`person-images/<person_id>.<ext>`); frontend displays on person card. |
+| photo_source_url | URL or null | Provenance page. |
+| photo_source_type | wikipedia / wikidata / web_profile / official_site / x_avatar / youtube_avatar / squad_verified / web_search | How the image was obtained. |
+| photo_confidence | high / medium / low | high = wiki/wikidata/verified-account portrait; medium = site/og or avatar that may be a logo. |
+| photo_checked_at | timestamp | Last lookup attempt (misses included). |
+| photo_notes | text | QC flags (duplicate hash, low-res, deferrals). |
+
 The master person registry. One row per person.
 
 | Field | Type | Definition |
@@ -185,3 +195,20 @@ Seed X/Twitter handles for the future X monitor (M3 watchlist). Verification and
 | `source_url` | Where the handle was found. |
 | `found_via` | `url` (a stored link) or `mention` (named in a source note). |
 | `all_refs` | All linked refs when a handle appears under multiple entities. |
+
+---
+
+## 9. `news_sources.csv` (222 rows)
+
+Offline seed of the 16 Sep 2026 UAP/UFO website directory. Hosted apply upserts `public.sources` by `homepage_url`. `rss_url` is not stored here; ingest discovers feeds.
+
+| Field | Definition |
+|---|---|
+| `directory_n` | Directory row number 1–222. |
+| `name` | Outlet name from the directory. |
+| `homepage_url` | Directory href (topic/section URL when one exists). |
+| `category` | `specialist` / `research` / `us_national` / `science_defense` / `uk_ireland` / `canzuk` / `international` / `local` / `primary`. |
+| `check_code` | Directory verification key A–D. |
+| `language` | ISO 639-1 hint for `fetch_policy` only. Story language is detected later. |
+| `activate` | `true` for specialist 1–36, research 37–52, primary 206–222, and listed topic-section newsrooms. `false` for homepage-only general newsrooms. |
+| `notes` | Directory coverage/role text. |

@@ -5,14 +5,13 @@ import { excerptLooksUsable, extractOgImage, htmlToExcerpt } from "../_shared/ht
 import { hostnameOf } from "../_shared/canonicalize.ts";
 import { serviceClient } from "../_shared/supabase.ts";
 import { closeRun, jsonResponse, openRun } from "../_shared/run.ts";
-import { briefWithOpenRouter, scoreWithOpenRouter } from "../_shared/openrouter.ts";
+import { briefWithOpenRouter, PROMPT_VERSION, scoreWithOpenRouter } from "../_shared/openrouter.ts";
 import { storeStoryImage } from "../_shared/images.ts";
 import { deterministicComponents } from "../_shared/components.ts";
 import { RETIRED_TAGS, TAGS, confidenceFrom, mixTag, needsReview, type Tag } from "../_shared/score-mix.ts";
 
 const MODEL = "deepseek/deepseek-v4.1-flash";
 const METHODOLOGY = "mix_v2";
-const PROMPT = "score_v2";
 const WORKER = "score-stories";
 
 type StoryRow = {
@@ -21,8 +20,11 @@ type StoryRow = {
   title: string;
   excerpt: string | null;
   source_id: string;
+  cluster_id: string | null;
+  status: string;
   summary: string | null;
   image_status: string;
+  translation_status?: string;
 };
 
 type SourceRow = { source_id: string; name: string; homepage_url: string };
@@ -33,9 +35,11 @@ Deno.serve(async (req) => {
   const denied = requireSchedulerSecret(req);
   if (denied) return denied;
 
+  const mode = await readMode(req);
   const supabase = serviceClient();
   const runId = await openRun(supabase, WORKER);
   let scored = 0;
+  let rescored = 0;
   let reviewed = 0;
   let failed = 0;
   let briefed = 0;
@@ -43,31 +47,46 @@ Deno.serve(async (req) => {
   const errors: unknown[] = [];
 
   try {
-    const { data: claimed, error: claimError } = await supabase.rpc("claim_pending_stories", {
-      worker_id: WORKER,
-      max_n: 5,
-    });
-    if (claimError) throw claimError;
-    const stories = (claimed ?? []) as StoryRow[];
+    const pendingMax = mode === "rescore" ? 0 : mode === "pending" ? 5 : 2;
+    const stories: StoryRow[] = [];
+    if (pendingMax > 0) {
+      const { data: claimed, error: claimError } = await supabase.rpc("claim_pending_stories", {
+        worker_id: WORKER,
+        max_n: pendingMax,
+      });
+      if (claimError) throw claimError;
+      stories.push(...((claimed ?? []) as StoryRow[]));
+    }
+
+    const rescoreSlots = mode === "pending" ? 0 : Math.max(0, 5 - stories.length);
+    if (rescoreSlots > 0) {
+      const { data: claimed, error: claimError } = await supabase.rpc("claim_rescore_prompt", {
+        worker_id: WORKER,
+        max_n: rescoreSlots,
+        want_prompt: PROMPT_VERSION,
+      });
+      if (claimError) throw claimError;
+      stories.push(...((claimed ?? []) as StoryRow[]));
+    }
 
     for (const story of stories) {
+      const inplace = story.status === "ready" || story.status === "review";
       try {
         const sourceRow = await loadSource(supabase, story.source_id);
-        const page = await fetchPage(story, sourceRow);
+        const page = await fetchPage(story, sourceRow, story.image_status !== "stored");
         const excerpt = page.excerpt;
-        const { data: siblings } = await supabase
-          .from("stories")
-          .select("source_id")
-          .neq("story_id", story.story_id)
-          .eq("title", story.title);
-        const corroboration = Math.min(10, 2.5 * (1 + new Set((siblings ?? []).map((row) => row.source_id)).size));
-        const components = deterministicComponents(story.title, excerpt, corroboration);
+        const { clusterSize, corroboration } = await coverageHints(supabase, story);
         const modelOut = await scoreWithOpenRouter({
           title: story.title,
           excerpt,
           sourceName: sourceRow?.name ?? "unknown",
         });
         if (!modelOut.summary) throw new Error("empty_summary");
+        const components = deterministicComponents(story.title, excerpt, {
+          corroboration,
+          clusterSize,
+          signals: modelOut.signals,
+        });
 
         let review = false;
         const reasons: string[] = [];
@@ -89,9 +108,11 @@ Deno.serve(async (req) => {
               mix: components,
               model: modelOut.scores[tag],
               mixed,
+              primary_caution: modelOut.primaryCaution,
+              primary_substance: modelOut.primarySubstance,
             },
             methodology_version: METHODOLOGY,
-            prompt_version: PROMPT,
+            prompt_version: PROMPT_VERSION,
             model: MODEL,
           };
         });
@@ -108,8 +129,12 @@ Deno.serve(async (req) => {
           .in("tag", [...RETIRED_TAGS]);
         if (retireError) throw retireError;
 
-        const image = await storeImage(supabase, story.story_id, page.ogImage);
-        if (image.status === "stored") imagesStored += 1;
+        let image = { url: null as string | null, status: story.image_status as string };
+        if (story.image_status !== "stored") {
+          const stored = await storeImage(supabase, story.story_id, page.ogImage);
+          image = stored;
+          if (stored.status === "stored") imagesStored += 1;
+        }
 
         if (review) {
           await supabase.from("review_queue").upsert(
@@ -123,14 +148,19 @@ Deno.serve(async (req) => {
           );
           reviewed += 1;
         }
+        const keepTranslatedBrief =
+          !inplace &&
+          story.translation_status === "translated" &&
+          Boolean(story.summary?.trim());
         await supabase
           .from("stories")
           .update({
             status: review ? "review" : "ready",
             excerpt,
-            summary: modelOut.summary,
-            image_url: image.url,
-            image_status: image.status,
+            summary: keepTranslatedBrief ? story.summary : modelOut.summary,
+            ...(story.image_status === "stored"
+              ? {}
+              : { image_url: image.url, image_status: image.status }),
             form: allowedForm(modelOut.form),
             locked_at: null,
             locked_by: null,
@@ -139,38 +169,105 @@ Deno.serve(async (req) => {
           })
           .eq("story_id", story.story_id);
         scored += 1;
+        if (inplace) rescored += 1;
       } catch (cause) {
-        failed += 1;
         const message = cause instanceof Error ? cause.message : String(cause);
-        errors.push({ story_id: story.story_id, error: message });
-        await supabase
-          .from("stories")
-          .update({
-            status: "failed",
-            last_error: message.slice(0, 500),
-            locked_at: null,
-            locked_by: null,
-            updated_at: new Date().toISOString(),
-          })
-          .eq("story_id", story.story_id);
+        errors.push({ story_id: story.story_id, error: message, inplace });
+        if (inplace) {
+          await supabase
+            .from("stories")
+            .update({
+              locked_at: null,
+              locked_by: null,
+              updated_at: new Date().toISOString(),
+            })
+            .eq("story_id", story.story_id);
+        } else {
+          failed += 1;
+          await supabase
+            .from("stories")
+            .update({
+              status: "failed",
+              last_error: message.slice(0, 500),
+              locked_at: null,
+              locked_by: null,
+              updated_at: new Date().toISOString(),
+            })
+            .eq("story_id", story.story_id);
+        }
       }
     }
 
-    // Ready rows scored before briefs and images existed.
-    const backfill = await backfillBriefs(supabase, stories.length === 0 ? 6 : 3, errors);
-    briefed += backfill.briefed;
-    imagesStored += backfill.imagesStored;
+    if (mode !== "rescore") {
+      const backfill = await backfillBriefs(supabase, stories.length === 0 ? 6 : 3, errors);
+      briefed += backfill.briefed;
+      imagesStored += backfill.imagesStored;
+    }
 
-    const counts = { claimed: stories.length, scored, reviewed, failed, briefed, images_stored: imagesStored };
+    const counts = {
+      claimed: stories.length,
+      scored,
+      rescored,
+      reviewed,
+      failed,
+      briefed,
+      images_stored: imagesStored,
+      mode,
+      prompt_version: PROMPT_VERSION,
+    };
     await closeRun(supabase, runId, counts, errors);
     return jsonResponse({ ok: true, ...counts, errors }, 200, corsHeaders);
   } catch (cause) {
     const message = cause instanceof Error ? cause.message : String(cause);
     errors.push({ error: message });
-    await closeRun(supabase, runId, { scored, reviewed, failed, briefed, images_stored: imagesStored }, errors);
+    await closeRun(
+      supabase,
+      runId,
+      { scored, rescored, reviewed, failed, briefed, images_stored: imagesStored },
+      errors,
+    );
     return jsonResponse({ ok: false, error: message }, 500, corsHeaders);
   }
 });
+
+async function readMode(req: Request): Promise<"mixed" | "rescore" | "pending"> {
+  try {
+    const body = await req.json() as { mode?: unknown };
+    if (body.mode === "rescore" || body.mode === "pending") return body.mode;
+  } catch {
+    // cron ticks send no body
+  }
+  return "mixed";
+}
+
+async function coverageHints(
+  supabase: Supabase,
+  story: StoryRow,
+): Promise<{ clusterSize: number; corroboration: number }> {
+  if (story.cluster_id) {
+    const { data } = await supabase
+      .from("stories")
+      .select("source_id")
+      .eq("cluster_id", story.cluster_id);
+    const rows = data ?? [];
+    const sources = new Set(rows.map((row) => row.source_id));
+    return {
+      clusterSize: Math.max(1, rows.length),
+      corroboration: Math.min(10, 2.5 * sources.size),
+    };
+  }
+  const { data: siblings } = await supabase
+    .from("stories")
+    .select("source_id")
+    .neq("story_id", story.story_id)
+    .eq("title", story.title);
+  const extra = new Set((siblings ?? []).map((row) => row.source_id));
+  extra.add(story.source_id);
+  return {
+    clusterSize: 1 + (siblings ?? []).length,
+    corroboration: Math.min(10, 2.5 * extra.size),
+  };
+}
 
 async function backfillBriefs(
   supabase: Supabase,

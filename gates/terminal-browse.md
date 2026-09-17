@@ -1,6 +1,6 @@
 # Gates: Terminal directory browse (people + podcasts)
 
-Scope: Replace the people and podcasts tables with a Graphite `.g-terminal` index: type to filter, keyboard select, inspector, open the record. No invented scores. No P2/P3. Organizations may keep the table.
+Scope: Replace the people and podcasts tables with a search-first name index: type to filter, keyboard select, inspector, open the record. No invented scores. No P2/P3. Organizations may keep the table.
 
 - [x] G1: People page mounts DirectoryIndex, not RegistryTable
   CHECK: rg -n "DirectoryIndex|RegistryTable" src/app/people/page.tsx
@@ -12,7 +12,7 @@ Scope: Replace the people and podcasts tables with a Graphite `.g-terminal` inde
   EXPECT: /DirectoryIndex/
   EVIDENCE: 1:import DirectoryIndex, { type DirectoryFilter, type DirectoryRow } from "@/components/DirectoryIndex"; | 56:      <DirectoryIndex
 
-- [x] G3: Directory uses kit terminal + option rows, not nested cards
+- [x] G3: Directory uses terminal + option rows, not nested cards
   CHECK: rg -n "g-terminal|g-option|g-card" src/components/DirectoryIndex.tsx
   EXPECT: /g-terminal/
   EVIDENCE: 193:                    className="g-option directory-index__row" | 221:        <footer className="g-terminal__footer">

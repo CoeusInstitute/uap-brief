@@ -3,7 +3,9 @@ export const dynamic = "force-dynamic";
 import MetricCard, { MetricStrip } from "@/components/MetricCard";
 import PageFrame from "@/components/PageFrame";
 import PageHeader from "@/components/PageHeader";
+import { tagLabel } from "@/lib/assessment";
 import { shortDate, tierLabel } from "@/lib/format";
+import { isScoreTag } from "@/lib/types";
 import { loadOrganizations, loadPeople, loadPodcasts, loadRegistryCounts } from "@/lib/registry";
 import { loadEntityStats, loadSourceStats, loadTagStats, loadTagTrends } from "@/lib/stories";
 
@@ -109,7 +111,7 @@ export default async function AnalyticsPage() {
                 <tbody>
                   {tags.map((row) => (
                     <tr key={row.tag}>
-                      <td>{row.tag}</td>
+                      <td>{isScoreTag(row.tag) ? tagLabel(row.tag) : row.tag}</td>
                       <td className="numeric">{row.n}</td>
                       <td className="numeric g-mono">{row.avg_score == null ? "—" : row.avg_score.toFixed(1)}</td>
                     </tr>
@@ -143,7 +145,7 @@ export default async function AnalyticsPage() {
                   {trends.slice(0, 24).map((row) => (
                     <tr key={`${row.week}-${row.tag}`}>
                       <td>{shortDate(row.week) ?? row.week.slice(0, 10)}</td>
-                      <td>{row.tag}</td>
+                      <td>{isScoreTag(row.tag) ? tagLabel(row.tag) : row.tag}</td>
                       <td className="numeric">{row.n}</td>
                     </tr>
                   ))}

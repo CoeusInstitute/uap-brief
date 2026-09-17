@@ -31,6 +31,8 @@ Deno.serve(async (req) => {
       .from("stories")
       .select("story_id,title,excerpt")
       .is("matched_at", null)
+      .eq("relevance_status", "accepted")
+      .in("translation_status", ["original", "translated"])
       .in("status", ["pending", "processing", "review", "ready"])
       .order("created_at", { ascending: false })
       .limit(20);

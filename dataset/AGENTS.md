@@ -4,11 +4,11 @@ Binding contract for the canonical CSV registry. Parent rules in [../AGENTS.md](
 
 ## Purpose
 
-P0 seed of people, shows, appearances, timeline records, organizations, and X handle notes. Hosted import is applied; this folder remains the offline seed and the source for reversible merges. The live wiki reads `*_public` views, not these CSVs.
+P0 seed of people, shows, appearances, timeline records, organizations, X handle notes, and the news-source directory (`news_sources.csv`). Hosted import is applied; this folder remains the offline seed and the source for reversible merges. The live wiki reads `*_public` views, not these CSVs.
 
 ## Ownership
 
-- Owns: CSV files, `DATA_DICTIONARY.md`, column vocabularies, id schemes (`UP-####`, `POD-###`, `APP-###`, `EVT-###`, `STM-###`, `ORG-###`).
+- Owns: CSV files (including `news_sources.csv`), `DATA_DICTIONARY.md`, column vocabularies, id schemes (`UP-####`, `POD-###`, `APP-###`, `EVT-###`, `STM-###`, `ORG-###`).
 - Does not own: hosted schema (`../supabase/AGENTS.md`) or Next.js rendering.
 
 ## Local Contracts

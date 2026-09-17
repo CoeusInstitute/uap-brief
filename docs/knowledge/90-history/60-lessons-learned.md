@@ -2,6 +2,32 @@
 
 > Generated from `60-lessons-learned.jsonl`. Do not edit directly.
 
+## LL-0009 — Public feed showed NewsNation pork/Epstein, Space.com JWST/white dwarfs, The Debrief stretchable screens, Unknown Country hauntings
+
+- Date: `2026-09-16T18:26:00+00:00`
+- Severity: `high`
+- Component: `gate-stories`
+- Tags: ingest, gate, feed
+
+**Root cause:** ingest-news takes the last 15 items from every active source; P7 added sitewide mixed-outlet feeds; score-stories published anything that scored
+
+**Repair:** gate-stories classifies title plus excerpt before match/score; rejects become failed/off_topic; claim_pending_stories, claim_brief_backfill, and claim_rescore_prompt require relevance_status=accepted; claim_rescore_stories excludes off_topic
+
+**Verification:** ungated Ready/review=0; 97 off_topic failed including pork/Epstein/JWST/haunted house/stretchable screen; Ready still includes Pentagon UAP pathway, Falcon Lake, Ellsworth, UFO Sightings Daily; npx next build passed; mixed sources remain active
+
+## LL-0008 — Almost every Ready row showed Lacking data + Interesting; PSYOP never appeared as a real finding.
+
+- Date: `2026-09-16T18:22:52+00:00`
+- Severity: `high`
+- Component: `score-stories`
+- Tags: scoring, mix_v2, score_v3
+
+**Root cause:** score_v2 prompt was a one-liner; novelty was hardcoded to 10 and narrative_coordination/rehash to 0, so mix_v2 crushed PSYOP and inflated INTERESTING. Highest-tag display then always picked those poles.
+
+**Repair:** score_v3 desk prompt with residual LACKING_DATA/INTERESTING and influence-function PSYOP; compute novelty/rehash/coordination; in-place rescore via claim_rescore_prompt; assessment line requires PSYOP/WOO >= 4.
+
+**Verification:** 93 Ready stories on score_v3. Feed pairs: Interesting/Credible/Vetted ~32/32/28. Pentagon disclosure pathway PSYOP 5.5 / Interesting 6.5 in IDE browser. Australia alien-base Woo 7.0.
+
 ## LL-0007 — coverage1 undercounted sourced people; web first pass marked people done with 0 results after total Exa failure
 
 - Date: `2026-09-16T16:07:10+00:00`

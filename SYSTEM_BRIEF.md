@@ -191,7 +191,7 @@ For each item:
    - `rehash` (restates known material with no new data);
    - `contestation` (credible parties dispute it, or the dataset's counterpoints apply);
    - `source_profile` (outlet's historical mix of scored material).
-3. **Mixture formula** per tag, documented as `mix_v2` and accepted in `docs/adr/0003-tag-set-mix-v2.md`:
+3. **Mixture formula** per tag, documented as `mix_v2` with live prompt `score_v3` and accepted in `docs/adr/0003-tag-set-mix-v2.md`:
    - `VETTED = 0.40*model + 0.30*evidence_chain + 0.20*corroboration + 0.10*official_record`
    - `PSYOP = 0.45*model + 0.25*narrative_coordination + 0.20*language_markers + 0.10*rehash`
    - `WOO = 0.50*model + 0.30*language_markers + 0.20*evidence_gap`
@@ -213,18 +213,9 @@ For each item:
 
 ## 6. Monitored sources
 
-**News and aggregator sites (owner list; The UFO Chronicles was listed twice, deduped):**
+**News sources:** the 222-outlet directory in `dataset/news_sources.csv` (16 Sep 2026). All rows are registered on hosted `sources`. Ingest activates specialist, research, primary-source, and topic-section URLs only (~93 live with hosted-only keepers). Sitewide Reuters/AP/NYT/BBC homepages stay registered and inactive. `ingest-news` discovers RSS; do not invent feed URLs. `gate-stories` remains the topic filter. Mixed outlets already hosted (NewsNation, Space.com, TWZ, DefenseScoop, Ask a Pol) are retargeted to their UAP section URLs.
 
-| Source | URL | Notes |
-|---|---|---|
-| UAP News Center | `https://uapnewscenter.com/` | Hand-curated daily aggregator; also hosts the UFO conference tracker. |
-| The UFO Chronicles | `https://www.theufochronicles.com/` | Long-running aggregator with labels/tags. |
-| UFO Sightings Daily | `https://www.ufosightingsdaily.com/` | High-volume sightings blog; heavy woo content; a natural low-end calibration source. |
-| UAPs News | `https://uapsnews.com/blog/` | Case-file style reported stories with evidence discussion. |
-| UFO Pulse | `https://ufopulse.com/category/latest-news/` | News/category feed. |
-| UFO UAP | `https://www.ufouap.net/en/news` | Structured news items with sources named. |
-| PBS NewsHour (UAP tag) | `https://www.pbs.org/newshour/tag/uap` | Mainstream baseline. |
-| UFO News (Cristina Gomez) | `https://www.ufonews.co/` | Reporter-led outlet. |
+Hosted-only keepers not in the directory stay active: UAP News Center overlap aside, UAPs News, UFO Pulse, UFO Sightings Daily, UFO UAP, UFO News (Cristina Gomez), PBS NewsHour (UAP tag).
 
 **Podcasts:** the 78 shows in `dataset/podcasts.csv` (with feed endpoints), plus the planned expansion (Breaking Points and others per the gaps doc). Reach threshold default 50k, configurable.
 
@@ -268,14 +259,16 @@ Suggested functions (TBB shape: one job per function, claim/process pattern, ide
 
 | Function | Does | Schedule |
 |---|---|---|
-| `ingest-news` | Fetch each active news source per its fetch policy, normalize, dedupe (URL + title hash + cluster), insert `stories` as pending. | every 2h |
+| `ingest-news` | Fetch 12 due active news sources per run, discover RSS (path-relative on topic URLs first), normalize, dedupe, insert `stories` as pending. | every 15m |
+| `gate-stories` | Read title plus excerpt (fetch page when the stored excerpt is thin); accept only UAP/UFO/Disclosure-primary items; reject others as `failed` / `off_topic`. | every 5m |
+| `translate-stories` | After accept: detect language; English stays `original`; other languages get an English title and brief (`translated`). | every 5m |
 | `ingest-podcasts` | Resolve each show endpoint (verified feed, iTunes, YouTube), fetch new items since last run, filter by reach threshold, insert episodes, queue matching. | every 6h |
-| `match-entities` | Alias-normalized matching (title first, then description) against people/orgs; writes `story_entities` and episode guests; unmatched name-shaped strings go to a candidates list. | after each ingest |
-| `score-stories` | Claim pending stories in small batches, call OpenRouter (`deepseek/deepseek-v4.1-flash`, structured JSON, reasoning high), compute deterministic components, mix per methodology version, store scores and components, route extremes to `review_queue`. | every 2h, batched |
+| `match-entities` | Alias-normalized matching (title first, then description) against people/orgs; writes `story_entities` and episode guests; unmatched name-shaped strings go to a candidates list. Accepted and translated/original stories only. | after each ingest |
+| `score-stories` | Claim accepted, translated-or-original pending stories in small batches, call OpenRouter (`deepseek/deepseek-v4.1-flash`, structured JSON, reasoning high), compute deterministic components, mix per methodology version, store scores and components, route extremes to `review_queue`. | every 15m, batched |
 | `ingest-x` | (gated) Pull posts for tracked handles and topics; store and match. | hourly when live |
 | `rebuild-graph` | Refresh `graph_edges` and stats views after new data. | after scoring |
 
-Pipeline: **collect, normalize, dedupe, resolve entities, score, review, publish, display**. State machine per story: `pending -> processing -> (review) -> ready | failed`. Failures never flip ready items back; rescoring is a separate, locked operation (TBB's `claim_rescore_articles` pattern).
+Pipeline: **collect, normalize, dedupe, gate, translate, resolve entities, score, review, publish, display**. State machine per story: `pending -> (gate) -> (translate) -> processing -> (review) -> ready | failed`. Failures never flip ready items back; rescoring is a separate, locked operation (TBB's `claim_rescore_articles` pattern). Off-topic rejects stay `failed` / `off_topic`.
 
 Secrets (Supabase Edge Function secrets only): `OPENROUTER_API_KEY` (owner supplies), plus `X_*` and `YOUTUBE_API_KEY` if those modules go live. Scheduler secret in Vault. No secrets in the repo, ever.
 
@@ -299,8 +292,6 @@ Name-matching rules for ingestion (the same conventions the registry follows):
 **Aesthetic (owner standards):** dark, low-glare surfaces. Pure white text or bright borders on dark read as harsh and count as defects. Use soft off-whites for text, muted panel fills, accents reserved for data and interaction. Generous even spacing over density. AA contrast minimum. Dark theme is the default; a light theme is optional later.
 
 **Motion:** animate with intent. Animated SVG accents (a radar sweep, a signal trace, entity glyphs), hover elevations on cards and graph nodes, score chips that fill or pulse on reveal, timeline scrubs. Duration 300 to 600ms, eased; respect `prefers-reduced-motion`; motion never gates content or reading. Keep dependencies light: CSS and SVG first, at most one motion library.
-
-**UI Toolkit** use the tool kit as your design reference and rule system `/frontend_design`
 
 **Pages:**
 
@@ -382,3 +373,7 @@ Name-matching rules for ingestion (the same conventions the registry follows):
 - **Registry:** the people/podcasts/organizations master data from `dataset/`.
 
 Related documents: `dataset/DATA_DICTIONARY.md` (every column and vocabulary), `README.md` (layout, constants, working notes).
+
+## Person photos (frontend)
+Person cards render `people_public.photo_url` (fallback: initials placeholder). Provenance fields and the pipeline contract live in `docs/photo-pipeline.md`.
+

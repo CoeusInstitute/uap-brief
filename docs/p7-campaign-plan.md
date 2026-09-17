@@ -64,4 +64,55 @@ No fabricated URLs/dates/outlets; blanks stay blank; score nothing; label no one
 - Cause: background bash loop piping `$(curl ...)` output through `tee` to the harness capture pipe can deadlock (backpressure) — the shell blocks writing, the loop freezes, curl hangs.
 - Fix: drain loops now run as a Windows-native Python worker (`.enrich/invoke_worker.py`, urllib, 240s timeout, retries, output redirected straight to a log file — no tee, no pipeline). `invoke_loop.sh` now just execs the worker. Three workers run concurrently (claims are lock-safe).
 - Operational rule for this campaign: long HTTP loops on Windows never go through `$(curl)` + tee; use the Python worker pattern.
+## Gate receipts (2026-09-16, evening)
+- **G2 MET: every person sourced — 849/849** (`select count(*) from people p where not exists (...)` returns empty; no orphan person_ids in person_sources). Verified after UP-0485 closed.
+- Pool 1-3: **250/250 queue done, 0 failed** (wave1 12 + core 84 + wave3 80 + source-less 74). Three python workers carried the tail; ~$1.5 total OpenRouter for the drain phase (each iter ~$0.04).
+- Straggler resolved: UP-0485 Shane Ryan — automated trace returned only same-name noise; hand-resolved as Westall 1966 researcher with 10 verified URLs; written result: 8 sources (podcast + interviews). Registry note updated.
+- Liveness: pool pass complete; 2,474 checked / 98.4% alive; dead links recorded with `url_ok=false`.
+- Open: G3 80/93 core (13 thin-core in Wave-4 depth squads); G6 478/500 edges; G9 dates ~36% (target 40%); majors bulk collecting (YouTube phase ~60%); final wave (notable + tierless remainder, ~339) after majors.
+## Wave 4 receipt (2026-09-16, thin-core depth)
+- 13 under-built core people deep-traced by two squads; 171 candidates loaded; official primaries recovered: congress.gov hearing transcripts (Comer 2023-07-26 + 2024-11-13; Subramanyam event), 3 senate.gov releases (Gillibrand), rubio.senate.gov (Gallego quote), nasa.gov team release (Evans 2022-10-21), Politico+NYT (Stevens 2017-12-16), albany.edu faculty page + EurekAlert (Levy), ABC/Newsweek (Trump Feb-2026 directive chain), Disclosure Forum site (Winterberg), SCU AMA (Hoffman 2026-07-14), arXiv x2 (Little).
+- Data-quality correction: UP-0076 Wesley A. Watters affiliation — sources show Wellesley College astronomy chair; registry's "IGPP researcher" tag unconfirmed (note added to people.research_notes).
+- Majors bulk: YouTube phase closed (247/247 collected, 3,382 dropped as noise); web/links phases + load + auto-drain next.
+## Snippet-gate fix (2026-09-16)
+- Finding: 7 of 13 Wave-4 core people stayed <5 sources although their candidates were written by the squads. `validateModel` required the person's name in title/outlet/url only — aggregate items without the name in the headline were dropped even when the model kept them and the snippet attributed them.
+- Fix: the name gate now includes the candidate snippet (title + outlet + url + snippet). Deployed to hosted (`enrich-dossier`). The 7 rows were re-opened and reprocessed.
+## G3 receipt (2026-09-16 late)
+- **G3 MET: 93/93 core people have >=5 sources** (was 10/93 at Wave-1 review).
+- Path: Wave-4 squads (171 candidates) + snippet-inclusive name gate (86) + registry alias fixes for the last two:
+  - UP-0070 Richard Hoffman -> alias "Rich Hoffman" (all his talks/interviews use "Rich"; strict first+last tokens blocked them).
+  - UP-0029 Donald Trump -> alias "Trump" (coverage is surname-heavy; "Donald" rarely appears).
+- Alias hygiene note for future waves: trace squads should flag informal/nickname forms in their receipts; registry `aliases` is the precise place to record them (never loosen token matching globally).
+## Gate receipts 2 (2026-09-16 evening)
+- **G6 MET: appearance edges 816** (target >=500; was 205 at review). Majors authored the bulk as they drained.
+- **G9 headline MET: overall dated 3,846/6,300 = 61%** (target >=40%; was 12%). Date backfill processed ~2,710 more rows; majors writes carry dates natively. Appearance-type sub-metric recorded above.
+- Majors drain in progress: queue 317 done / 168 pending / 12 processing (of 497 total incl. wave set).
+- Photos (Track F): F1 structured pass done (104); F1.2 wiki-by-name pass running (politicians incl. Trump/Obama/Rubio/Carter landed with large portraits); X avatars 17; F2 squads next for the tail.
+- Known minor gap: majors links phase crashed ~85% through (wikidata connect timeout) - ~39 people missing link-collection only; payloads unaffected.
+## Gate receipts 2b — G9 + G10 detail (2026-09-16)
+- **G9 fully met**: overall dated 61% (>=40%); appearance-type dated: youtube 83.2% (3,026/3,635), podcast 87.2% (435/499), tv 97.7% (42/43), radio 90.0% (18/20) — all >=70%.
+- **G10 fully met**: avg sources/person overall 7.4 (>=4), 1_core 15.0 (>=12), 2_major 8.1 (>=6).
+- Standing: G1-G6, G8-G10 met or verified; G7 domains broad; G11 named gaps verified earlier (UP-0507 WOND/Ep50/Ep82/PU; Nolan + Coulthart >=20 w/ mainstream); G12 liveness 98.4% (>=95%); **G13 outstanding**: majors drain (in progress) + final wave (352, staged) + link-liveness re-run after new loads.
+## Photo track status (2026-09-16 night)
+- 255 people have photos: squad_verified 115, wikipedia 70, official_site 37, x_avatar 17, wikidata 15, web_profile 1 (total population 849).
+- F2 rounds 1+2 (160 people researched): 137 verified images delivered, 23 documented misses (no public solo photo exists), 6 stragglers pending download retry (Wikimedia IP throttling).
+- Identity gates in force: candidate source vetting (squads, vision-checked) -> summary/context gate (name pass) -> page-title/filename gate (apply). Full audit caught + reverted 5 name-collision images early.
+- Remaining: wiki name-pass sweeping (86/673 done, resolves steadily); after majors finish, final wave queue (352) loads; then a last photo pass for the remainder.
+## Majors bulk complete + final wave launched (2026-09-16 17:14)
+- 'MAJORS BULK DONE' — all phases (yt 13:49, web 14:56, links 15:03, load 15:04) + drain completed 17:13. Queue: 497/497 done, zero failed.
+- DB at launch: 9,266 sources (5,436 dated = 59%), appearances 1,037 (target was 500).
+- FINAL WAVE launched: 352 people (notable + tierless remainder) -> collectors -> load -> drain worker (staged runner .enrich/run_final_wave.sh).
+## CAMPAIGN PROCESSING COMPLETE — 849/849 (2026-09-17 ~06:25 ET)
+- Every person in the registry has been through the full P7 pipeline; enrichment_queue = 849 done, 0 pending, 0 failed.
+- Final totals at completion: **14,749 person_sources (8,321 dated)**; **1,515 appearance edges**; avg **17.4** rows/person (1_core 15.0 / 2_major 17.1); photos 345+ and climbing; coverage 849/849 (zero gaps).
+- Morning drain (post-shutdown resume) alone added ~4,150 rows across the final wave.
+- Closeout in flight: liveness refresh (new rows), photo sweep (314/521 of the remainder), date backfill (still finding undated rows from the new writes), cron watchdog cleanup.
+- All twelve gates now met (G1-G13; G12 liveness pass in refresh, G13 = this full drain).
+## FINAL CLOSEOUT (2026-09-17 morning)
+- All 13 gates MET (see gates/p7-dossier-enrichment.md for the evidence ledger).
+- Liveness: FULL population pass complete — 14,749/14,749 checked, 14,593 ok, 146 dead (98.97%).
+- Dates: 8,673/14,749 (58.8%) and still accruing via the backfill trickle.
+- Photos (Track F): 345+ assigned; wiki sweep 415/521 through the remainder; identity gates held throughout (audit caught + reverted 5 name-collision images; 6 rejected-candidate collisions corrected at apply time).
+- Shutdown-resume exercised end-to-end: pause marker + runbook + cron watchdog (removed at close); morning manual resume; zero data loss.
+- Known cosmetic tails (non-blocking): links-phase partial coverage from upstream wikidata timeouts on two waves (>85% each); some `other`-typed source rows remain for a future classification pass; a handful of wikidata-throttled photo downloads pending retry.
 

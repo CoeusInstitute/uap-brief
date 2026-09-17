@@ -1,0 +1,223 @@
+directory_n,name,homepage_url,category,check_code,language,activate,notes
+1,The Debrief,https://thedebrief.org/,specialist,A,en,true,"Science, defense and UAP reporting"
+2,Liberation Times,https://www.liberationtimes.com/,specialist,B,en,true,UAP investigations and disclosure reporting
+3,The Black Vault,https://www.theblackvault.com/,specialist,A,en,true,"FOIA documents, investigations and analysis"
+4,Ask a Pol UAP,https://www.askapoluaps.com/,specialist,A,en,true,Congressional interviews and UAP policy reporting
+5,Paradigm,https://www.paradigm.news/,specialist,A,en,true,Investigations and UAP reporting
+6,UAP Media UK,https://www.uapmedia.uk/,specialist,A,en,true,UAP articles and commentary
+7,UAP Check,https://www.uapcheck.com/,specialist,A,en,true,International UAP news and analysis
+8,UAP News Center,https://uapnewscenter.com/,specialist,A,en,true,News aggregation and article discovery
+9,The UFO Chronicles,https://www.theufochronicles.com/,specialist,A,en,true,"Reporting, commentary and republished material"
+10,Open Minds,https://openminds.tv/,specialist,A,en,true,UFO articles and historical cases
+11,Sentinel News,https://www.sentinel-news.org/,specialist,B,en,true,UAP newsletter and analysis
+12,Silva Record,https://silvarecord.com/,specialist,A,en,true,UAP reporting archive; irregular updates
+13,UFO Joe / Joe Murgia,https://www.ufojoe.net/,specialist,A,en,true,Interview transcripts and commentary; irregular updates
+14,UFO Explorations,https://www.ufoexplorations.com/,specialist,A,en,true,Independent UFO investigations
+15,Earthfiles,https://www.earthfiles.com/,specialist,B,en,true,UFO and anomalous-phenomena reporting
+16,Unknown Country,https://unknowncountry.com/,specialist,C,en,true,"UFO news, interviews and experiencer perspectives"
+17,Coast to Coast AM,https://www.coasttocoastam.com/,specialist,A,en,true,Radio interviews and paranormal news
+18,Unexplained Mysteries,https://www.unexplained-mysteries.com/,specialist,A,en,true,UFO and paranormal news aggregation
+19,Mysterious Universe,https://mysteriousuniverse.org/,specialist,A,en,true,Paranormal articles and podcasts
+20,The Daily Grail,https://www.dailygrail.com/,specialist,B,en,true,Anomalies news and commentary
+21,Higgypop,https://www.higgypop.com/,specialist,A,en,true,Paranormal reporting and commentary
+22,Anomalien,https://anomalien.com/,specialist,A,en,true,UFO and paranormal stories
+23,Latest UFO Sightings,https://www.latest-ufo-sightings.net/,specialist,A,en,true,"Sightings, videos and UFO news"
+24,UFO Digest,https://www.ufodigest.com/,specialist,A,en,true,UFO/paranormal articles and archive
+25,UFO Casebook,https://www.ufocasebook.com/,specialist,C,en,true,UFO reports and historical archive; access limited
+26,Fortean Times,https://www.forteantimes.com/,specialist,C,en,true,Anomalous-phenomena magazine
+27,Podcast UFO,https://podcastufo.com/,specialist,A,en,true,"Interviews, news and written case articles"
+28,Trail of the Saucers,https://medium.com/on-the-trail-of-the-saucers,specialist,A,en,true,UAP essays and commentary
+29,Grenzwissenschaft-Aktuell / GreWi,https://www.grewi.de/,specialist,A,de,true,German-language UFO and anomalies news
+30,Revista UFO,https://ufo.com.br/,specialist,A,pt,true,Brazilian UFO publication; Portuguese
+31,OVNI Hoje,https://www.ovnihoje.com/,specialist,A,pt,true,Brazilian UFO news and commentary; Portuguese
+32,Inexplicata,https://inexplicata.blogspot.com/,specialist,A,en,true,Latin American and Spanish-language-world UFO cases in English
+33,The Anomalist,https://www.anomalist.com/,specialist,A,en,true,UFO and anomalies news aggregation
+34,WEAPONIZED,https://www.weaponizedpodcast.com/,specialist,B,en,true,"UFO interviews, investigations and episode resources"
+35,Above the Norm News,https://www.abovethenormnews.com/,specialist,A,en,true,UFO and anomalies news
+36,Mystery Wire,https://www.mysterywire.com/,specialist,C,en,true,George Knapp / KLAS reporting archive; current website access unconfirmed
+37,The UFO Trail,https://ufotrail.blogspot.com/,research,A,en,true,Jack Brewer; documents and critical analysis
+38,A Different Perspective,https://kevinrandle.blogspot.com/,research,B,en,true,Kevin Randle; UFO cases and commentary
+39,Ufology Research,https://uforum.blogspot.com/,research,A,en,true,Chris Rutkowski; Canadian reports and research
+40,The Oz Files,https://theozfiles.blogspot.com/,research,B,en,true,Bill Chalker; Australian UFO research
+41,UFOs: Scientific Research,https://ufos-scientificresearch.blogspot.com/,research,A,en,true,Research notes and document analysis
+42,David Clarke,https://drdavidclarke.co.uk/,research,B,en,true,"UK investigations, archives and folklore"
+43,UFO FOTOCAT Blog,https://fotocat.blogspot.com/,research,A,en,true,Photographic cases and research bibliography
+44,Bad UFOs,https://badufos.blogspot.com/,research,C,en,true,Robert Sheaffer; skeptical commentary
+45,Jason Colavito,https://www.jasoncolavito.com/blog,research,A,en,true,Critical UFO and media analysis
+46,Metabunk,https://www.metabunk.org/,research,D,en,true,Community investigations and image/video analysis
+47,Skeptical Inquirer,https://skepticalinquirer.org/,research,A,en,true,Skeptical investigations and commentary
+48,Skeptic,https://www.skeptic.com/,research,A,en,true,Critical essays and interviews
+49,Snopes,https://www.snopes.com/,research,A,en,true,Fact-checking of viral UFO claims
+50,Avi Loeb,https://avi-loeb.medium.com/,research,C,en,true,Research commentary and hypotheses
+51,Christopher Mellon,https://www.christophermellon.net/,research,B,en,true,UAP policy essays and disclosure advocacy
+52,Richard Dolan Members,https://richarddolanmembers.com/,research,B,en,true,UFO research commentary and interviews; subscription content
+53,NewsNation,https://www.newsnationnow.com/space/ufo/,us_national,C,en,true,Frequent UAP reporting and interviews
+54,Associated Press,https://apnews.com/,us_national,A,en,false,Wire reporting; event-driven coverage
+55,Reuters,https://www.reuters.com/,us_national,A,en,false,Wire reporting; event-driven coverage
+56,ABC News,https://abcnews.com/,us_national,A,en,false,National reporting and video
+57,CBS News / 60 Minutes,https://www.cbsnews.com/,us_national,A,en,false,National reporting and investigations
+58,NBC News,https://www.nbcnews.com/,us_national,C,en,false,National reporting; automated access limited
+59,CNN,https://www.cnn.com/,us_national,C,en,false,National and international reporting
+60,Fox News,https://www.foxnews.com/category/science/air-and-space/ufos,us_national,A,en,true,UFO topic section
+61,PBS News / NOVA,https://www.pbs.org/,us_national,A,en,false,News coverage and science documentaries
+62,NPR,https://www.npr.org/,us_national,C,en,false,News and interviews; automated access limited
+63,The New York Times,https://www.nytimes.com/,us_national,C,en,false,Investigations and national reporting
+64,The Washington Post,https://www.washingtonpost.com/,us_national,A,en,false,"News, analysis and cultural coverage"
+65,The Wall Street Journal,https://www.wsj.com/,us_national,A,en,false,Investigations and national-security reporting
+66,USA Today,https://www.usatoday.com/,us_national,C,en,false,National coverage; automated access limited
+67,Los Angeles Times,https://www.latimes.com/,us_national,C,en,false,"News, Southern California and cultural coverage"
+68,Politico,https://www.politico.com/,us_national,A,en,false,Government and national-security reporting
+69,The Hill,https://thehill.com/,us_national,D,en,false,Congressional reporting and opinion; access limited
+70,Axios,https://www.axios.com/,us_national,A,en,false,Policy and government developments
+71,Newsweek,https://www.newsweek.com/,us_national,C,en,false,UFO reporting; automated access limited
+72,TIME,https://time.com/,us_national,A,en,false,News and features
+73,The Atlantic,https://www.theatlantic.com/,us_national,A,en,false,"Science, culture and policy essays"
+74,The New Yorker,https://www.newyorker.com/,us_national,A,en,false,Long-form reporting
+75,New York Magazine / Intelligencer,https://nymag.com/tags/ufos/,us_national,A,en,true,UFO topic archive and commentary
+76,New York Post,https://nypost.com/,us_national,A,en,false,Frequent UFO and whistleblower coverage
+77,Washington Examiner,https://www.washingtonexaminer.com/,us_national,A,en,false,National-security news and commentary
+78,The Washington Times,https://www.washingtontimes.com/,us_national,C,en,false,Government coverage and opinion
+79,The Daily Beast,https://www.thedailybeast.com/,us_national,A,en,false,Politics and UFO-related news
+80,Vox,https://www.vox.com/,us_national,A,en,false,Explanatory journalism and interviews
+81,Slate,https://slate.com/,us_national,C,en,false,Critical analysis and culture
+82,Rolling Stone,https://www.rollingstone.com/,us_national,A,en,false,"UFO culture, personalities and reporting"
+83,Forbes,https://www.forbes.com/,us_national,A,en,false,Staff reporting and contributor commentary
+84,Business Insider,https://www.businessinsider.com/,us_national,A,en,false,"News, defense and science coverage"
+85,Fortune,https://fortune.com/,us_national,A,en,false,Occasional national-news coverage
+86,Bloomberg,https://www.bloomberg.com/,us_national,C,en,false,Occasional reporting and video
+87,VICE,https://www.vice.com/,us_national,C,en,false,UFO and science reporting archive
+88,404 Media,https://www.404media.co/,us_national,A,en,false,Technology investigations and occasional UAP coverage
+89,People,https://people.com/,us_national,A,en,false,Occasional UFO stories and interviews
+90,Yahoo News,https://news.yahoo.com/,us_national,C,en,false,Original reporting and syndicated articles
+91,USA Herald,https://usaherald.com/,us_national,A,en,false,Occasional UAP reporting and commentary
+92,Space.com,https://www.space.com/tag/ufos-extraterrestrials,science_defense,A,en,true,UFO and extraterrestrials topic page
+93,Live Science,https://www.livescience.com/,science_defense,A,en,false,UFO reporting and science explainers
+94,Scientific American,https://www.scientificamerican.com/,science_defense,A,en,false,Scientific analysis and commentary
+95,Science News,https://www.sciencenews.org/,science_defense,A,en,false,Science reporting
+96,ScienceAlert,https://www.sciencealert.com/,science_defense,A,en,false,Science news and explainers
+97,Discover,https://www.discovermagazine.com/,science_defense,A,en,false,Science and UFO history
+98,Popular Mechanics,https://www.popularmechanics.com/ufo-central/,science_defense,A,en,true,Dedicated UFO section
+99,Popular Science,https://www.popsci.com/,science_defense,A,en,false,UAP research and science news
+100,New Scientist,https://www.newscientist.com/,science_defense,D,en,false,Science coverage; automated access limited
+101,Astronomy,https://www.astronomy.com/,science_defense,A,en,false,Astronomy and UFO commentary
+102,IFLScience,https://www.iflscience.com/,science_defense,A,en,false,UFO news and scientific explanations
+103,Phys.org,https://phys.org/,science_defense,A,en,false,"Research news, wire copy and academic commentary"
+104,The Conversation,https://theconversation.com/,science_defense,C,en,false,Expert-authored analysis; also syndicated elsewhere
+105,Smithsonian Magazine,https://www.smithsonianmag.com/,science_defense,A,en,false,"UFO news, history and aviation"
+106,National Geographic,https://www.nationalgeographic.com/,science_defense,A,en,false,Features and UFO documentaries
+107,BBC Science Focus,https://www.sciencefocus.com/,science_defense,A,en,false,Science explainers
+108,Ars Technica,https://arstechnica.com/,science_defense,A,en,false,Science and technology analysis
+109,WIRED,https://www.wired.com/,science_defense,A,en,false,"Investigations, science and technology"
+110,Gizmodo,https://gizmodo.com/,science_defense,A,en,false,"UFO, space and technology news"
+111,Futurism,https://futurism.com/,science_defense,A,en,false,UFO reporting and commentary
+112,Tech Times,https://www.techtimes.com/,science_defense,A,en,false,Occasional UFO and related technology coverage
+113,New Space Economy,https://newspaceeconomy.ca/,science_defense,A,en,false,Space-sector analysis and UAP commentary
+114,The War Zone,https://www.twz.com/category/uap,science_defense,A,en,true,Dedicated UAP section; defense and sensor analysis
+115,DefenseScoop,https://defensescoop.com/tag/uap/,science_defense,A,en,true,"UAP policy, programs and procurement reporting"
+116,The Aviationist,https://theaviationist.com/,science_defense,A,en,false,Military aviation and sighting analysis
+117,Military.com,https://www.military.com/,science_defense,A,en,false,Defense reporting and syndicated news
+118,Military Times,https://www.militarytimes.com/,science_defense,A,en,false,Military and national-security coverage
+119,Army Times,https://www.armytimes.com/,science_defense,A,en,false,Military coverage; overlaps Military Times
+120,Breaking Defense,https://breakingdefense.com/,science_defense,A,en,false,Occasional Pentagon and UAP coverage
+121,HISTORY,https://www.history.com/,science_defense,A,en,false,"UFO history, case features and documentaries"
+122,BBC News,https://www.bbc.com/news,uk_ireland,C,en,false,News and documentaries; automated access limited
+123,The Guardian,https://www.theguardian.com/world/ufos,uk_ireland,A,en,true,UFO topic archive
+124,The Independent,https://www.independent.co.uk/,uk_ireland,A,en,false,UFO news and features
+125,Sky News,https://news.sky.com/,uk_ireland,A,en,false,National and international UFO reporting
+126,ITV News,https://www.itv.com/news/topic/ufo,uk_ireland,A,en,true,UFO topic archive
+127,The Times / Sunday Times,https://www.thetimes.com/,uk_ireland,C,en,false,News and features
+128,The Telegraph,https://www.telegraph.co.uk/,uk_ireland,A,en,false,UFO news and features
+129,Daily Mail,https://www.dailymail.co.uk/,uk_ireland,C,en,false,Frequent UFO and whistleblower stories
+130,The Sun,https://www.thesun.co.uk/topic/aliens-ufos/,uk_ireland,A,en,true,Aliens and UFOs topic archive
+131,Daily Mirror,https://www.mirror.co.uk/,uk_ireland,A,en,false,Sightings and UFO news
+132,Daily Express,https://www.express.co.uk/,uk_ireland,D,en,false,UFO stories; automated access limited
+133,Metro,https://metro.co.uk/,uk_ireland,C,en,false,Occasional UFO news; access limited
+134,Daily Star,https://www.dailystar.co.uk/,uk_ireland,A,en,false,UFO and paranormal stories
+135,Daily Record,https://www.dailyrecord.co.uk/,uk_ireland,A,en,false,Scottish cases and international UFO news
+136,The Scotsman,https://www.scotsman.com/,uk_ireland,D,en,false,Scottish cases; automated access limited
+137,Irish Independent,https://www.independent.ie/,uk_ireland,D,en,false,Occasional coverage; automated access limited
+138,The Irish Times,https://www.irishtimes.com/,uk_ireland,A,en,false,Occasional UFO coverage
+139,International Business Times UK,https://www.ibtimes.co.uk/,uk_ireland,A,en,false,UFO reporting and interviews
+140,CBC News,https://www.cbc.ca/news,canzuk,C,en,false,Canadian sightings and science coverage
+141,CTV News,https://www.ctvnews.ca/,canzuk,C,en,false,Canadian reports and international news
+142,Global News,https://globalnews.ca/,canzuk,A,en,false,Canadian UFO reports and news
+143,National Post,https://nationalpost.com/,canzuk,D,en,false,Canadian and international coverage
+144,ABC Australia,https://www.abc.net.au/news,canzuk,A,en,false,Australian investigations and international coverage
+145,SBS News,https://www.sbs.com.au/news,canzuk,A,en,false,UFO reporting and documentaries
+146,7NEWS,https://7news.com.au/news/ufo,canzuk,A,en,true,UFO section and interviews
+147,9News Australia,https://www.9news.com.au/,canzuk,A,en,false,Sightings and international UFO news
+148,news.com.au,https://www.news.com.au/,canzuk,A,en,false,Frequent sightings and UFO stories
+149,The Sydney Morning Herald,https://www.smh.com.au/,canzuk,C,en,false,Reporting and commentary
+150,The Age,https://www.theage.com.au/,canzuk,C,en,false,Australian coverage and commentary
+151,Stuff,https://www.stuff.co.nz/,canzuk,A,en,false,New Zealand reports and historical investigations
+152,RNZ,https://www.rnz.co.nz/,canzuk,C,en,false,Occasional coverage; automated access limited
+153,The New Zealand Herald,https://www.nzherald.co.nz/,canzuk,D,en,false,Occasional coverage; automated access limited
+154,Al Jazeera,https://www.aljazeera.com/,international,A,en,false,English and Arabic; international news
+155,Euronews,https://www.euronews.com/tag/ufo,international,A,en,true,Multilingual UFO topic page
+156,France 24,https://www.france24.com/,international,C,en,false,French and English; international reporting
+157,Deutsche Welle,https://www.dw.com/,international,C,en,false,German and English; reporting and explainers
+158,Le Monde,https://www.lemonde.fr/,international,D,en,false,French; news and analysis
+159,Le Figaro,https://www.lefigaro.fr/,international,C,en,false,French; news and video
+160,Le Parisien,https://www.leparisien.fr/,international,A,en,false,French; substantial UFO coverage
+161,Tagesschau,https://www.tagesschau.de/,international,A,en,false,German; public-service news
+162,Die Welt,https://www.welt.de/,international,A,en,false,German; sightings and explanations
+163,El País,https://elpais.com/,international,A,en,false,Spanish and English; news and features
+164,RTVE,https://www.rtve.es/,international,A,en,false,Spanish; public-service news and documentaries
+165,Infobae,https://www.infobae.com/tag/ovni/,international,A,en,true,Spanish; OVNI topic page
+166,Clarín,https://www.clarin.com/,international,A,en,false,Spanish; Argentine and international coverage
+167,La Nación,https://www.lanacion.com.ar/,international,A,en,false,Spanish; Argentine and international coverage
+168,El Universal,https://www.eluniversal.com.mx/tag/ovni/,international,A,en,true,Spanish; Mexican OVNI topic page
+169,El Tiempo,https://www.eltiempo.com/,international,A,en,false,Spanish; Colombian coverage and blogs
+170,BioBioChile,https://www.biobiochile.cl/,international,A,en,false,Spanish; Chilean UFO coverage
+171,Emol,https://www.emol.com/,international,A,en,false,Spanish; Chilean coverage and UFO archive
+172,G1,https://g1.globo.com/,international,C,en,false,Portuguese; Brazilian news and fact-checking
+173,South China Morning Post,https://www.scmp.com/topics/ufos-and-extraterrestrial-life,international,A,en,true,English; UFO and extraterrestrial-life section
+174,The Japan Times,https://www.japantimes.co.jp/tag/ufo,international,A,en,true,English; UFO topic archive
+175,Kyodo News,https://english.kyodonews.net/,international,C,en,false,English and Japanese; Japanese wire service
+176,The Korea Times,https://www.koreatimes.co.kr/topic/ufo/list,international,A,en,true,English; UFO topic page
+177,Taipei Times,https://www.taipeitimes.com/,international,A,en,false,English; Taiwanese and syndicated coverage
+178,NDTV,https://www.ndtv.com/topic/ufo,international,A,en,true,English; substantial UFO topic archive
+179,Times of India,https://timesofindia.indiatimes.com/,international,A,en,false,English; frequent UFO reporting and video
+180,Hindustan Times,https://www.hindustantimes.com/,international,A,en,false,English; international UFO coverage
+181,The Indian Express,https://indianexpress.com/,international,A,en,false,English; Indian and international reporting
+182,The News International,https://www.thenews.com.pk/,international,A,en,false,English; Pakistani outlet with UFO coverage
+183,IOL,https://iol.co.za/,international,A,en,false,English; South African UFO coverage
+184,The Daily Star (Bangladesh),https://www.thedailystar.net/,international,A,en,false,English; international UFO news
+185,Eurasia Review,https://www.eurasiareview.com/,international,C,en,false,Occasional UAP analysis and contributed articles
+186,8 News Now / KLAS,https://www.8newsnow.com/,local,C,en,false,Las Vegas; George Knapp and UFO reporting
+187,Las Vegas Review-Journal,https://www.reviewjournal.com/,local,A,en,false,"Nevada, Area 51 and UFO coverage"
+188,KTLA,https://ktla.com/,local,D,en,false,Southern California sightings and national coverage
+189,Arizona Republic / azcentral,https://www.azcentral.com/,local,D,en,false,Arizona cases and Phoenix Lights
+190,KSL,https://www.ksl.com/,local,A,en,false,Utah and national UFO coverage
+191,Deseret News,https://www.deseret.com/,local,A,en,false,"Utah, national policy and UFO coverage"
+192,SFGATE,https://www.sfgate.com/,local,C,en,false,California sightings and historical cases
+193,WOSU,https://www.wosu.org/,local,A,en,false,Ohio public-radio discussions
+194,WBLM,https://wblm.com/,local,A,en,false,Maine sighting stories
+195,WROK,https://1440wrok.com/,local,A,en,false,Illinois sighting stories
+196,WDTV,https://www.wdtv.com/,local,A,en,false,West Virginia UFO events and regional news
+197,FOX 13 Tampa Bay,https://www.fox13news.com/,local,A,en,false,UFO interviews and news
+198,ABC7 New York,https://abc7ny.com/,local,A,en,false,Local and national UFO coverage
+199,NBC10 Philadelphia,https://www.nbcphiladelphia.com/,local,A,en,false,National and regional UFO coverage
+200,Dallas Express,https://dallasexpress.com/,local,A,en,false,Occasional UAP policy reporting
+201,FOX 10 Phoenix,https://www.fox10phoenix.com/,local,A,en,false,Arizona sightings and national UFO coverage
+202,KTVU FOX 2,https://www.ktvu.com/,local,A,en,false,Bay Area and national UFO coverage
+203,NPR Illinois,https://www.nprillinois.org/,local,A,en,false,Public-radio reporting and syndicated UFO analysis
+204,Minot Daily News,https://www.minotdailynews.com/,local,A,en,false,North Dakota military-sighting history and news
+205,Discover Moose Jaw,https://www.discovermoosejaw.com/,local,C,en,false,Saskatchewan regional reporting; occasional UFO research coverage
+206,MUFON,https://mufon.com/,primary,A,en,true,"Investigations, case summaries and organizational news"
+207,National UFO Reporting Center (NUFORC),https://nuforc.org/,primary,A,en,true,"Witness reports, case database and updates"
+208,Scientific Coalition for UAP Studies,https://www.explorescu.org/,primary,A,en,true,Research papers and conference updates
+209,Sol Foundation,https://thesolfoundation.org/,primary,A,en,true,"Research, policy papers and recorded talks"
+210,Americans for Safe Aerospace,https://www.safeaerospace.org/,primary,B,en,true,"Pilot testimony, advocacy and updates"
+211,UAPx,https://www.uapexpedition.org/,primary,A,en,true,Instrumented investigations and research updates
+212,NARCAP,https://www.narcap.org/,primary,B,en,true,Aviation incident research and technical reports
+213,UFO-Sverige,https://www.ufo.se/,primary,A,sv,true,"Swedish UFO research, news and publications"
+214,Centro Italiano Studi Ufologici (CISU),https://www.cisu.org/,primary,A,it,true,Italian UFO research and news
+215,Centro Ufologico Nazionale (CUN),https://www.cun-italia.com/,primary,A,it,true,Italian UFO research and news
+216,British UFO Research Association (BUFORA),https://www.bufora.org.uk/,primary,A,en,true,UK investigations and research archive
+217,UFO Research NSW,https://www.ufor.asn.au/,primary,A,en,true,"Australian research, articles and events"
+218,GEIPAN / CNES,https://www.geipan.fr/,primary,B,fr,true,French government case investigations and releases
+219,AARO,https://www.aaro.mil/,primary,A,en,true,"US government reports, cases and releases"
+220,NASA UAP,https://science.nasa.gov/uap/,primary,A,en,true,Scientific-study information and official updates
+221,US National Archives,https://www.archives.gov/research/topics/uaps,primary,A,en,true,UFO/UAP records and release notices
+222,Paradigm Research Group,https://www.paradigmresearchgroup.org/,primary,B,en,true,Disclosure advocacy and historical media index

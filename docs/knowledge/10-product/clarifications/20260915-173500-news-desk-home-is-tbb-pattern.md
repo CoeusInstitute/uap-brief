@@ -19,8 +19,8 @@
 ## Confirmed brief
 
 - **Goal:** The front door is a UAP news feed. People / shows / graph stay in the nav but are not the product’s opening move.
-- **Non-goals:** P2 ingest, P3 scoring, invented stories, TBB bias spectrum, a second visual language, nested `.g-card` list items.
-- **Constraints:** Map TBB layout onto Graphite tokens. Sticky tag and form chips write `searchParams`. Lead slot is dashed empty copy (“Lead story will appear here.”). Watching lists only the eight homepage URLs in `SYSTEM_BRIEF.md` §6.
+- **Non-goals:** P2 ingest, P3 scoring, invented stories, TBB bias spectrum.
+- **Constraints:** Sticky tag and form chips write `searchParams`. Lead slot is dashed empty copy (“Lead story will appear here.”). Watching lists only the eight homepage URLs in `SYSTEM_BRIEF.md` §6.
 - **Success checks:** No cute headline on `/`. Nav says Feed. Filter chips update the URL. `/people` stays a table. `/story/demo` does not invent a story.
 - **Open items:** none
 

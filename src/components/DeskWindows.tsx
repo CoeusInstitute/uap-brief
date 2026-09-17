@@ -145,12 +145,10 @@ function DeskWindowLayer() {
       <p className="sr-only" aria-live="polite">
         {limitMessage || (activeId ? `${windows.length} of ${DESK_WINDOW_LIMIT} windows` : "")}
       </p>
-      {windows.map((item, index) => (
+      {windows.map((item) => (
         <DeskWindowFrame
           key={item.id}
           record={item}
-          index={index}
-          count={windows.length}
           active={item.id === activeId}
           onClose={() => close(item.id)}
           onFocus={() => focus(item.id)}
@@ -162,15 +160,11 @@ function DeskWindowLayer() {
 
 function DeskWindowFrame({
   record,
-  index,
-  count,
   active,
   onClose,
   onFocus,
 }: {
   record: DeskWindowRecord;
-  index: number;
-  count: number;
   active: boolean;
   onClose: () => void;
   onFocus: () => void;
@@ -247,37 +241,29 @@ function DeskWindowFrame({
         }
       }}
     >
-      <header className="g-terminal__toolbar desk-window__titlebar" onPointerDown={(event) => onPointerDown(event, "move")}>
-        <span className="desk-window__identity">
-          <span className="g-terminal__prompt" aria-hidden="true">
-            ❯
-          </span>
-          <span id={`desk-window-${record.id}-title`} className="g-terminal__command">
-            {record.title}
-          </span>
-          {record.meta ? <span className="g-terminal__dim">{record.meta}</span> : null}
+      <header
+        className="desk-window__titlebar dossier-window__titlebar"
+        onPointerDown={(event) => onPointerDown(event, "move")}
+      >
+        <span className="dossier-window__led" data-active={active ? "true" : undefined} aria-hidden="true" />
+        <span className="dossier-window__kicker">Record</span>
+        <span id={`desk-window-${record.id}-title`} className="dossier-window__title">
+          {record.title}
         </span>
-        <span className="desk-window__chrome">
+        {record.meta ? <span className="dossier-window__id">{record.meta}</span> : null}
+        <span className="dossier-window__actions">
           {record.href ? (
-            <Link href={record.href} className="g-link">
-              page
+            <Link href={record.href} className="dossier-window__action">
+              Page
             </Link>
           ) : null}
-          <button type="button" className="g-button" data-size="sm" onClick={onClose}>
-            close
+          <button type="button" className="dossier-window__action" onClick={onClose}>
+            Close
           </button>
         </span>
       </header>
 
-      <div className="desk-window__body">{record.content}</div>
-
-      <footer className="g-terminal__footer">
-        <span>
-          {index + 1} of {DESK_WINDOW_LIMIT}
-          {count !== DESK_WINDOW_LIMIT ? ` · ${count} open` : ""}
-        </span>
-        <span className="g-terminal__dim">drag title · resize edge</span>
-      </footer>
+      <div className="desk-window__body dossier-window__body">{record.content}</div>
 
       {EDGES.map((edge) => (
         <span

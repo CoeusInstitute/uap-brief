@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter, Manrope } from "next/font/google";
 import DeskWindowsRoot from "@/components/DeskWindowsRoot";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import "./globals.css";
 
@@ -41,7 +40,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div id="content" className="g-workspace flex-1">
             {children}
           </div>
-          <Footer />
         </DeskWindowsRoot>
       </body>
     </html>

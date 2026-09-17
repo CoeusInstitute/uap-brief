@@ -20,7 +20,7 @@ UAP_Brief/
 ├─ src/                     Next.js App Router UI
 ├─ supabase/                config, migrations, function contracts
 ├─ docs/                    ADRs and project knowledge
-├─ frontend_design/         Graphite UI kit
+├─ frontend_design/         live app stylesheet (`graphite-ui.css`)
 ├─ dataset/                 canonical seed data
 └─ tools/                   harvest.py, seed-registry.mjs
 ```

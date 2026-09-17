@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import PageFrame from "@/components/PageFrame";
 import PageHeader from "@/components/PageHeader";
 import ScoreChip from "@/components/ScoreChip";
+import { tagLabel } from "@/lib/assessment";
 import { loadMethodology } from "@/lib/stories";
 import { TAG_COPY } from "@/lib/tags";
 import { SCORE_TAGS } from "@/lib/types";
@@ -50,9 +51,10 @@ export default async function MethodologyPage() {
             </p>
             {active?.notes ? <p className="g-caption">{active.notes}</p> : null}
             <p className="g-caption">
-              Review before publish when PSYOP ≥ 7, WOO ≥ 8, VETTED ≥ 7, or CREDIBLE ≥ 7.
-              The feed pairs one caution tag with one substance tag. Novelty and rehash are not
-              yet computed; novelty is stored as 10 minus rehash.
+              Review before publish when PSYOP ≥ 7, Unlikely ≥ 8, VETTED ≥ 7, or CREDIBLE ≥ 7.
+              The feed pairs one caution tag with one substance tag. Prompt{" "}
+              <span className="g-mono">score_v3</span>: LACKING_DATA and INTERESTING are residual.
+              Novelty, rehash, and narrative coordination are computed, not stubbed.
             </p>
           </div>
         </section>
@@ -65,7 +67,7 @@ export default async function MethodologyPage() {
               Tag set
             </h2>
             <p className="g-caption">
-              Intensity is 0 to 10 in half-point steps. Caution: PSYOP, WOO, LACKING_DATA. Substance:
+              Intensity is 0 to 10 in half-point steps. Caution: PSYOP, Unlikely, LACKING_DATA. Substance:
               VETTED, CREDIBLE, INTERESTING.
             </p>
           </div>
@@ -119,7 +121,7 @@ export default async function MethodologyPage() {
               <tbody>
                 {MIX.map((row) => (
                   <tr key={row.tag}>
-                    <td className="g-mono">{row.tag}</td>
+                    <td className="g-mono">{tagLabel(row.tag)}</td>
                     <td className="g-meta">{row.formula}</td>
                   </tr>
                 ))}

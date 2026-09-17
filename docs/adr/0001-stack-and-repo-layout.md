@@ -19,7 +19,7 @@ Use the same stack as TBB, with versions pinned at first scaffold:
 | Data | Hosted Supabase ref `agrijbcilmymfsnkdpoh` |
 | Client | `@supabase/supabase-js` 2.x, anon key only in the browser |
 | Model | OpenRouter `deepseek/deepseek-v4.1-flash`, reasoning effort `high` (scoring later) |
-| Visual | Graphite UI kit in `frontend_design/` |
+| Visual | Live stylesheet `frontend_design/graphite-ui.css` (Graphite kit contract retired 2026-09-16) |
 | Graph (later) | `react-force-graph-3d` on `/graph`, lazy-loaded |
 
 Repository layout: `src/` app, `supabase/`, `docs/adr`, `docs/knowledge`, `dataset/`, `tools/`.
@@ -32,3 +32,4 @@ Repository layout: `src/` app, `supabase/`, `docs/adr`, `docs/knowledge`, `datas
 - Scoring methodology is ADR 0003 (`mix_v2`). ADR 0002 is the historical eight-tag mix.
 - X ingest waits for the official API stub; scraping is rejected.
 - Local `supabase start` is not required for v1.
+- The Graphite kit markdown, showcase, and visual-contract rules were retired. The live stylesheet remains; there is no kit grammar agents must follow.

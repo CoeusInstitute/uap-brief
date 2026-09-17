@@ -4,7 +4,7 @@
       "id": "scoring-adr",
       "topic": "scoring-adr",
       "status": "closed",
-      "summary": "ADR 0003 accepted 2026-09-16. mix_v2 / score_v2 is the live six-tag set; review is floors only. mix_v1 remains historical.",
+      "summary": "ADR 0003 accepted 2026-09-16. mix_v2 / score_v3 is the live six-tag set; review is floors only. mix_v1 remains historical.",
       "trigger": "Closed 2026-09-16. ADR 0003 owns the live tag set and poles."
     },
     {

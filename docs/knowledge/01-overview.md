@@ -14,7 +14,7 @@ People following the UAP/UFO space who want signal triage and context. Owner: Mi
 
 - Registry wiki from hosted public views (seeded from `dataset/`)
 - P1 schema + hosted seed (applied)
-- News ingest, hybrid scoring (`mix_v2`), podcast ingest, official X API
+- News ingest, topic gate (`gate-stories`), English translate (`translate-stories`), hybrid scoring (`mix_v2` / `score_v3`), podcast ingest, official X API
 - Public episode and X rails on the home desk
 - 2D appearance network
 - Later: Vercel project/domain (owner must name them)

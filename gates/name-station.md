@@ -1,6 +1,6 @@
 # Gates: search-first name station
 
-Scope: Replace the people/podcasts multi-column table stream with a Graphite search-first name station (prompt + letter/scope + name list + dossier).
+Scope: Replace the people/podcasts multi-column table stream with a search-first name station (prompt + letter/scope + name list + dossier).
 
 - [x] G1: DirectoryIndex no longer renders role/tier/region as stream columns
   CHECK: node -e "const fs=require('fs'); const p=['src/components/DirectoryIndex.tsx','src/app/people/page.tsx','src/app/podcasts/page.tsx']; const rx=/directory-terminal__col-extra|directory-terminal__head|columns=\{/; console.log(p.some(f=>rx.test(fs.readFileSync(f,'utf8')))?'FOUND':'CLEARED');"

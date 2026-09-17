@@ -21,11 +21,11 @@ Stories covering the same underlying event. One canonical Story; siblings listed
 _Avoid_: merging distinct events because titles look similar
 
 **Score**:
-Per-tag intensity 0–10 (half points) plus confidence, rationale, stored components, and methodology/prompt versions. Hybrid: model pass plus deterministic mix (`mix_v2`, ADR 0003).
+Per-tag intensity 0–10 (half points) plus confidence, rationale, stored components, and methodology/prompt versions. Hybrid: model pass plus deterministic mix (`mix_v2` / prompt `score_v3`, ADR 0003).
 _Avoid_: rating; treating a Score as proof; scoring a person
 
 **Tag**:
-One of `PSYOP`, `WOO`, `INTERESTING`, `LACKING_DATA`, `VETTED`, `CREDIBLE`. Intensity means how strongly the material exhibits that property. Caution pole: `PSYOP`, `WOO`, `LACKING_DATA`. Substance pole: `VETTED`, `CREDIBLE`, `INTERESTING`.
+One of `PSYOP`, `WOO`, `INTERESTING`, `LACKING_DATA`, `VETTED`, `CREDIBLE`. Intensity means how strongly the material exhibits that property. Caution pole: `PSYOP`, `WOO`, `LACKING_DATA`. Substance pole: `VETTED`, `CREDIBLE`, `INTERESTING`. The UI prints `WOO` as Unlikely.
 _Avoid_: adding tags silently; flipping polarity; treating `NONSENSE` or `POTENTIAL` as live
 
 **Assessment line**:

@@ -225,7 +225,7 @@ async function processPerson(
     },
   );
 
-  const parsed = validateModel(json, allow, record.name, aliases);
+  const parsed = validateModel(json, allow, record.name, aliases, snippets);
   const deterministic = deterministicEdges(annotated, shows, record);
   const appearanceMap = new Map<string, ModelAppearance>();
   for (const edge of [...parsed.appearances, ...deterministic]) {
@@ -373,6 +373,7 @@ function validateModel(
   allow: Set<string>,
   name: string,
   aliases: string[],
+  snippets: Map<string, string>,
 ) {
   const sources: ModelSource[] = [];
   const links: ModelLink[] = [];
@@ -380,7 +381,7 @@ function validateModel(
   let drops = 0;
   for (const row of asArray(json.sources)) {
     const url = takeAllowedUrl(row.url, allow);
-    if (!url || !matchesPersonRecord(`${row.title ?? ""} ${row.outlet ?? ""} ${url}`, name, aliases)) {
+    if (!url || !matchesPersonRecord(`${row.title ?? ""} ${row.outlet ?? ""} ${url} ${snippets.get(url) ?? ""}`, name, aliases)) {
       drops += 1;
       continue;
     }

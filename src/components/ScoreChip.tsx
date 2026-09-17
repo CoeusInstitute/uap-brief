@@ -1,3 +1,4 @@
+import { tagLabel } from "@/lib/assessment";
 import type { ScoreTag } from "@/lib/types";
 
 export function formatScore(score: number): string {
@@ -6,7 +7,8 @@ export function formatScore(score: number): string {
 }
 
 export default function ScoreChip({ tag, score }: { tag: ScoreTag; score?: number }) {
-  const label = score === undefined ? tag : `${tag} ${formatScore(score)}`;
+  const name = tagLabel(tag);
+  const label = score === undefined ? name : `${name} ${formatScore(score)}`;
   return (
     <span className="g-badge g-badge--pill">
       <span className="g-mono">{label}</span>

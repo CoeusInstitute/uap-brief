@@ -11,7 +11,7 @@ import RecordList, { RecordRow, type RecordItem } from "@/components/RecordList"
 import type { FactItem } from "@/components/FactSheet";
 import type { PersonRecordModel } from "@/lib/person-record";
 
-const PERSON_WINDOW_SIZE = { width: 720, height: 800 };
+const PERSON_WINDOW_SIZE = { width: 840, height: 880 };
 
 export function personWindowSpec(personId: string, title: string): DeskWindowOpen {
   return {
@@ -36,47 +36,58 @@ function personIdFromHref(href?: string): string | null {
   return match ? decodeURIComponent(match[1]) : null;
 }
 
-function RecordSection({
+function nextIndex() {
+  let n = 0;
+  return () => String(++n).padStart(2, "0");
+}
+
+function DossierBlock({
+  index,
   title,
   extra,
   children,
 }: {
+  index: string;
   title: string;
   extra?: ReactNode;
   children: ReactNode;
 }) {
   const headingId = `${title.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-desk`;
   return (
-    <section className="desk-record__section" aria-labelledby={headingId}>
-      <header className="desk-record__section-head">
-        <h3 className="g-eyebrow desk-record__h" id={headingId}>
+    <section className="dossier-window__block" aria-labelledby={headingId}>
+      <header className="dossier-window__index">
+        <span className="dossier-window__n" aria-hidden="true">
+          {index}
+        </span>
+        <h3 className="dossier-window__heading" id={headingId}>
           {title}
         </h3>
+        <span className="dossier-window__hairline" aria-hidden="true" />
         {extra}
       </header>
-      {children}
+      <div className="dossier-window__panel">{children}</div>
     </section>
   );
 }
 
-function FactBlock({ title, items }: { title: string; items: FactItem[] }) {
+function FactBlock({ index, title, items }: { index: string; title: string; items: FactItem[] }) {
   const visible = items.filter(hasFact);
   if (visible.length === 0) return null;
   return (
-    <RecordSection title={title}>
+    <DossierBlock index={index} title={title}>
       <DetailList>
         {visible.map((item) => (
           <DetailItem key={item.label} label={item.label} value={item.value} />
         ))}
       </DetailList>
-    </RecordSection>
+    </DossierBlock>
   );
 }
 
 function NeighborList({ items }: { items: RecordItem[] }) {
   const desk = useDeskWindowsOptional();
   if (items.length === 0) {
-    return <p className="g-caption">No shared appearance edges.</p>;
+    return <p className="dossier-window__empty">No shared appearance edges.</p>;
   }
   if (!desk) {
     return <RecordList items={items} />;
@@ -92,7 +103,7 @@ function NeighborList({ items }: { items: RecordItem[] }) {
                 {item.title}
               </button>
             ) : (
-              <span className="g-body">{item.title}</span>
+              <span>{item.title}</span>
             )}
           </RecordRow>
         );
@@ -126,99 +137,121 @@ export default function PersonDeskRecord({ personId }: { personId: string }) {
   }, [personId]);
 
   if (status === "loading") {
-    return <p className="g-terminal__dim">Loading.</p>;
+    return <p className="dossier-window__empty">Loading record.</p>;
   }
   if (status === "error") {
-    return <p className="g-terminal__error">Record could not be loaded.</p>;
+    return <p className="dossier-window__empty" data-tone="error">Record could not be loaded.</p>;
   }
   if (status === "missing" || !model) {
-    return <p className="g-caption">No record for this id.</p>;
+    return <p className="dossier-window__empty">No record for this id.</p>;
   }
 
+  const seq = nextIndex();
+  const identity = model.identity.filter(hasFact);
+  const provenance = model.provenance.filter(hasFact);
+
   return (
-    <article className="desk-record" aria-labelledby={`${reactId}-name`}>
-      <header className="desk-record__mast">
-        <h2 id={`${reactId}-name`} className="sr-only">
+    <article className="dossier-window" aria-labelledby={`${reactId}-name`}>
+      <header className="dossier-window__hero">
+        <p className="dossier-window__filemark">Person file</p>
+        <h2 id={`${reactId}-name`} className="dossier-window__name">
           {model.name}
         </h2>
-        <div className="desk-record__marks">
-          {model.role ? <span className="g-badge">{model.role}</span> : null}
-          <span className="g-badge">{model.tier}</span>
-          <span className="g-caption">Scores apply to material, not to people.</span>
-        </div>
-        <p className="g-body">Attributed statements stay attributed. This window does not score the person.</p>
+        <dl className="dossier-window__meta">
+          {model.role ? (
+            <div>
+              <dt>Role</dt>
+              <dd>{model.role}</dd>
+            </div>
+          ) : null}
+          <div>
+            <dt>Tier</dt>
+            <dd>{model.tier}</dd>
+          </div>
+          <div>
+            <dt>Id</dt>
+            <dd>{model.id}</dd>
+          </div>
+        </dl>
+        <p className="dossier-window__disclaimer">Scores apply to material, not the person.</p>
       </header>
 
-      <RecordSection title="Attributed position">
-        <p className="g-caption">Stance {model.stance}</p>
+      <DossierBlock index={seq()} title="Attributed position">
+        <div className="dossier-window__field">
+          <span>Stance</span>
+          <p>{model.stance}</p>
+        </div>
         <Prose label="Position summary" value={model.position} />
         <Prose label="Claims / contributions" value={model.claims} />
         <Prose label="Counterpoints" value={model.counterpoints} />
-      </RecordSection>
+      </DossierBlock>
 
-      <div className="desk-record__facts">
-        <FactBlock title="Identity" items={model.identity} />
-        <FactBlock title="Provenance" items={model.provenance} />
-      </div>
-
-      {model.links.length > 0 ? (
-        <RecordSection title="Profiles">
-          <RecordList items={model.links} />
-        </RecordSection>
+      {identity.length > 0 || provenance.length > 0 ? (
+        <div className="dossier-window__split">
+          {identity.length > 0 ? <FactBlock index={seq()} title="Identity" items={identity} /> : null}
+          {provenance.length > 0 ? <FactBlock index={seq()} title="Provenance" items={provenance} /> : null}
+        </div>
       ) : null}
 
-      <RecordSection title="Sources">
-        <RecordList items={model.sources} empty="No source URL stored on this row." />
-      </RecordSection>
+      {model.links.length > 0 ? (
+        <DossierBlock index={seq()} title="Profiles">
+          <RecordList items={model.links} />
+        </DossierBlock>
+      ) : null}
 
-      <RecordSection title="Organizations">
+      <DossierBlock index={seq()} title="Sources">
+        <RecordList items={model.sources} empty="No source URL stored on this row." />
+      </DossierBlock>
+
+      <DossierBlock index={seq()} title="Organizations">
         <RecordList items={model.orgs} empty="No affiliations stored on this row." />
-      </RecordSection>
+      </DossierBlock>
 
       {model.shows.length > 0 ? (
-        <RecordSection title="Associated shows">
+        <DossierBlock index={seq()} title="Associated shows">
           <RecordList items={model.shows} />
-        </RecordSection>
+        </DossierBlock>
       ) : null}
 
       {model.news.length > 0 ? (
-        <RecordSection title="In the news">
+        <DossierBlock index={seq()} title="In the news">
           <RecordList items={model.news} />
-        </RecordSection>
+        </DossierBlock>
       ) : null}
 
       {model.posts.length > 0 ? (
-        <RecordSection title="Posts">
+        <DossierBlock index={seq()} title="Posts">
           <RecordList items={model.posts} />
-        </RecordSection>
+        </DossierBlock>
       ) : null}
 
       {model.episodes.length > 0 ? (
-        <RecordSection title="Episode guests">
+        <DossierBlock index={seq()} title="Episode guests">
           <RecordList items={model.episodes} />
-        </RecordSection>
+        </DossierBlock>
       ) : null}
 
-      <RecordSection
+      <DossierBlock
+        index={seq()}
         title="Appearances"
         extra={
           model.graphHref ? (
-            <Link href={model.graphHref} className="g-link">
-              On the graph
+            <Link href={model.graphHref} className="dossier-window__action">
+              Graph
             </Link>
           ) : null
         }
       >
         <RecordList items={model.appearances} empty="No appearances listed." />
-      </RecordSection>
+      </DossierBlock>
 
-      <RecordSection title="Timeline">
+      <DossierBlock index={seq()} title="Timeline">
         <RecordList items={model.timeline} empty="No timeline rows listed." />
-      </RecordSection>
+      </DossierBlock>
 
-      <RecordSection title="Also appeared with">
+      <DossierBlock index={seq()} title="Also appeared with">
         <NeighborList items={model.neighbors} />
-      </RecordSection>
+      </DossierBlock>
     </article>
   );
 }

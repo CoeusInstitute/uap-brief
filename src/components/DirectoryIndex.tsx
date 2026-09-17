@@ -313,38 +313,42 @@ export default function DirectoryIndex({
         )}
       </div>
 
-      <div className="directory-index__scopes">
-        <div className="g-segmented" role="group" aria-label={rail === "year" ? "Decades" : "Letters"}>
-          {visibleGroups.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className="g-button"
-              data-size="sm"
-              aria-pressed={group === item}
-              onClick={() => toggleGroup(item)}
-            >
-              {item}
-            </button>
-          ))}
+      {rail === "year" || filters.length > 0 ? (
+        <div className="directory-index__scopes">
+          {rail === "year" ? (
+            <div className="g-segmented" role="group" aria-label="Decades">
+              {visibleGroups.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className="g-button"
+                  data-size="sm"
+                  aria-pressed={group === item}
+                  onClick={() => toggleGroup(item)}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          ) : null}
+          {filters.length > 0 ? (
+            <div className="g-segmented" role="group" aria-label="Scopes">
+              {filters.map((filter) => (
+                <button
+                  key={filter.id}
+                  type="button"
+                  className="g-button"
+                  data-size="sm"
+                  aria-pressed={activeFilters.includes(filter.id)}
+                  onClick={() => toggleFilter(filter.id)}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+          ) : null}
         </div>
-        {filters.length > 0 ? (
-          <div className="g-segmented" role="group" aria-label="Scopes">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                type="button"
-                className="g-button"
-                data-size="sm"
-                aria-pressed={activeFilters.includes(filter.id)}
-                onClick={() => toggleFilter(filter.id)}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
-        ) : null}
-      </div>
+      ) : null}
 
       <div className="directory-index__workstation">
         <div className="directory-index__stream">
@@ -437,21 +441,13 @@ export default function DirectoryIndex({
             </div>
           ) : (
             <div className="directory-index__dossier-empty">
-              <p className="g-terminal__dim">Type a name or pick a {railNoun}.</p>
+              <p className="g-terminal__dim">
+                {rail === "year" ? `Type a name or pick a ${railNoun}.` : "Type a name."}
+              </p>
             </div>
           )}
         </section>
       </div>
-
-      <footer className="g-terminal__footer">
-        <span>
-          {filtered.length === 0 ? "0 of 0" : `${cursor + 1} of ${filtered.length}`}
-        </span>
-        <span>
-          <kbd className="g-kbd">↑</kbd> <kbd className="g-kbd">↓</kbd> move · <kbd className="g-kbd">↵</kbd> window ·{" "}
-          <kbd className="g-kbd">/</kbd> find · <kbd className="g-kbd">esc</kbd> reset
-        </span>
-      </footer>
     </div>
   );
 }

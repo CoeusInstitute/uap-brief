@@ -31,7 +31,7 @@ If you remember only six things:
 
 The UAP field publishes constantly: news blogs, hearings, podcasts, leaks, and commentary. Quality ranges from official records to unfalsifiable mysticism. This product collects that material, keeps the receipts, and scores the *item* on owner-specified tags such as `WOO`, `CREDIBLE`, and `VETTED`.
 
-The seed registry lists 849 people, 78 shows, 119 appearances, 90 timeline records, and 47 organizations. Hosted tables and public views are seeded; the wiki reads those views. P2/P3/P6 Edge Functions collect and score material; the public feed stays empty until Ready rows exist.
+The seed registry lists 849 people, 78 shows, 119 appearances, 90 timeline records, and 47 organizations. Hosted tables and public views are seeded; the wiki reads those views. P2/P3/P6 Edge Functions collect and score material. `gate-stories` classifies each news story on title plus excerpt before match/score; off-topic rows stay `failed` / `off_topic` and never reach `stories_public`. Accepted non-English rows get an English title and brief from `translate-stories` before match/score. The public feed stays empty until Ready accepted rows exist.
 
 ### Plain-language glossary
 
@@ -79,7 +79,7 @@ Readers cannot triage volume or see methodology. **UAP Brief’s job is to show 
 
 ### Design audience assumption
 
-Dark, low-glare Graphite surfaces. Soft off-whites, muted panels, accents for data. AA contrast. Motion never gates reading.
+Dark, low-glare surfaces. Soft off-whites, muted panels, accents for data. AA contrast. Motion never gates reading.
 
 ## 6. Use cases (what people actually do)
 
@@ -103,11 +103,11 @@ Dark, low-glare Graphite surfaces. Soft off-whites, muted panels, accents for da
 
 ### 7.3 Scoring subsystem
 
-Hybrid model + deterministic mix. Active methodology is `mix_v2` / `score_v2` (`docs/adr/0003-tag-set-mix-v2.md`). Review is floors only. The feed shows an assessment line (one caution tag paired with one substance tag). Tag set stays in `SYSTEM_BRIEF.md` §5.
+Hybrid model + deterministic mix. Active methodology is `mix_v2` / `score_v3` (`docs/adr/0003-tag-set-mix-v2.md`). Review is floors only. The feed shows an assessment line (one caution tag paired with one substance tag). Tag set stays in `SYSTEM_BRIEF.md` §5. `LACKING_DATA` and `INTERESTING` are residual; `PSYOP` scores influence-function.
 
 ### 7.4 Pages and features in plain language
 
-The home page is a news-desk feed (sticky search, lead slot with featured image, 16:9 thumbnail story rows with a 2–5 sentence model brief; single column, no rails) patterned on The Bias Brief. Graphite still owns visuals. `/` and `/story/[id]` read `stories_public` (summary, image, scores, components, entities). Rows show the assessment line. Until Ready rows exist the desk stays empty. Person pages also read `story_entities_public`, `episodes_public` guests, and `x_posts_public`. People, podcasts, and organizations browse via a Graphite `.g-terminal` name station (type or pick a letter, name list, dossier). Events use the same station with a decade rail. Record pages are the bench; stored names and ids link when they match a registry row. Person timelines scrub by decade when more than one decade is present. Methodology reads `methodology_public`. Graph is a 2D appearance network with a name list and a reduced-motion list fallback. Analytics is dynamic and reads `tag_stats`, `tag_trends`, `entity_stats`, and `source_stats`.
+The home page is a news-desk feed (sticky search, lead slot with featured image, 16:9 thumbnail story rows with a 2–5 sentence model brief; single column, no rails) patterned on The Bias Brief. `/` and `/story/[id]` read `stories_public` (summary, image, scores, components, entities). Rows show the assessment line. Until Ready rows exist the desk stays empty. Person pages also read `story_entities_public`, `episodes_public` guests, and `x_posts_public`. People, podcasts, and organizations browse via a search-first name station (type or pick a letter, name list, dossier). Events use the same station with a decade rail. Record pages are the bench; stored names and ids link when they match a registry row. Person timelines scrub by decade when more than one decade is present. Methodology reads `methodology_public`. Graph is a 2D appearance network with a name list and a reduced-motion list fallback. Analytics is dynamic and reads `tag_stats`, `tag_trends`, `entity_stats`, and `source_stats`.
 
 ### Reserved / not fully shipped (do not invent as live)
 
@@ -117,7 +117,7 @@ The home page is a news-desk feed (sticky search, lead slot with featured image,
 
 ```
 dataset/ CSVs  →  hosted registry tables + public views (P1 applied)
-curated sources → Edge ingest → stories → match → score → review → Ready views
+curated sources → Edge ingest → gate → translate → match → score → review → Ready views
 trace collectors → enrichment_queue → enrich-dossier → person_sources / person_links / appearances
 Next.js (anon) → public views only
 ```
@@ -157,6 +157,7 @@ For people following UAP coverage, UAP Brief delivers:
 ## 14. Working agreements for agents
 
 - Current phase: P1–P5 reading desk is in place. P2/P3/P6 pipelines are unblocked (owner, 2026-09-16). P7 Wave 1 dossier enrichment landed 2026-09-16; Waves 2–4 remain. Discover feeds; do not invent RSS, scores, subscriber counts, follower floors, or source URLs.
-- TBB is the stack/pipeline sibling and the home composition pattern, not the scoring model or visual kit.
-- Graphite kit is the visual contract. Cute or scaffolding copy on the front door is a defect. People directory rows open a detached `.desk-window` (max 8) filled with `.desk-record` (the person record). The directory inspector stays the thin dossier. Titlebar `page` opens `/people/[id]`.
+- TBB is the stack/pipeline sibling and the home composition pattern, not the scoring model or CSS.
+- Cute or scaffolding copy on the front door is a defect. People directory rows open a detached window (max 8) filled with the person record. The directory inspector stays the thin dossier. Titlebar `page` opens `/people/[id]`.
+- There is no UI kit contract. Current look lives in the app CSS; agents may evolve it.
 - Prefer `unknown` over invention.
