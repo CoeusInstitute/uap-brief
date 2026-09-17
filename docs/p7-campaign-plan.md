@@ -115,4 +115,10 @@ No fabricated URLs/dates/outlets; blanks stay blank; score nothing; label no one
 - Photos (Track F): 345+ assigned; wiki sweep 415/521 through the remainder; identity gates held throughout (audit caught + reverted 5 name-collision images; 6 rejected-candidate collisions corrected at apply time).
 - Shutdown-resume exercised end-to-end: pause marker + runbook + cron watchdog (removed at close); morning manual resume; zero data loss.
 - Known cosmetic tails (non-blocking): links-phase partial coverage from upstream wikidata timeouts on two waves (>85% each); some `other`-typed source rows remain for a future classification pass; a handful of wikidata-throttled photo downloads pending retry.
+## Graph layer build (2026-09-17, post-campaign phase 1: edges)
+- Built the network-graph edge layer as LIVE VIEWS (self-growing; no scheduler): `graph_edges` (9 kinds, 7,525 edges, ~0.8s), `person_name_norm`, `org_mint_candidates`; shared normalizer `norm_entity_name()`.
+- Org mint round 1+2: 57 conservative institutions (US agencies/military/committees, parties, universities, media, vessels/bases/incident sites) -> orgs 47->104, aliases 238->255; affiliation edges 115 -> 506.
+- Person<->person: co_story 717 (75 stories), co_appearance 214 (45 shared episode URLs).
+- Podcast->host: 51 matched hosts (person_name_norm); guest->episode: 1,954.
+- Curation queue remains: org_mint_candidates (860 normalized strings) for future minting; procedure documented in docs/graph-layer.md.
 

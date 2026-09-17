@@ -45,4 +45,5 @@ plus project context; check end-user objective and avoid overcomplicating
 codebase or UI. Record any true compatibility constraints for this subtree
 under `Local Contracts` only.
 - 2026-09-16 (Track F): person photos — bucket `person-images` (public read), `people.photo_*` columns, `people_public` exposes photo_url/source_type/confidence; function `x-avatar` (official X API avatar lookup); pipeline + frontend contract in `docs/photo-pipeline.md`.
+- 2026-09-17 (graph layer): `graph_edges` is a LIVE self-growing edge view (9 kinds: appearance/guest/co_appearance/co_story/affiliation/story_entity/episode/host/x_post) + helper views `person_name_norm`, `org_mint_candidates`; `norm_entity_name()` is the shared normalizer. Growth model + minting procedure + frontend contract: `docs/graph-layer.md`. Migration: `20260917090000_graph_layer.sql`. Never materialize or hand-write edges — extend the views.
 
