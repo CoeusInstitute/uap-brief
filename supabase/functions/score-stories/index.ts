@@ -91,13 +91,16 @@ Deno.serve(async (req) => {
         let review = false;
         const reasons: string[] = [];
         const rows = TAGS.map((tag: Tag) => {
-          const mixed = mixTag(tag, modelOut.scores[tag], components);
+          const rawScore = modelOut.scores[tag];
+          const rationale = (modelOut.rationale[tag] ?? "").trim();
+          // fail-soft: a dimension the model declined (no score AND no rationale) is skipped,
+          // not fatal - a single empty dimension must not kill an otherwise scorable story.
+          if (rawScore == null && !rationale) return null;
+          const mixed = mixTag(tag, rawScore, components);
           if (needsReview(tag, mixed)) {
             review = true;
             reasons.push(tag);
           }
-          const rationale = (modelOut.rationale[tag] ?? "").trim();
-          if (!rationale) throw new Error(`empty_rationale:${tag}`);
           return {
             story_id: story.story_id,
             tag,
@@ -115,7 +118,8 @@ Deno.serve(async (req) => {
             prompt_version: PROMPT_VERSION,
             model: MODEL,
           };
-        });
+        }).filter((row): row is NonNullable<typeof row> => row !== null);
+        if (rows.length === 0) throw new Error("no_scorable_tags");
 
         const { error: scoreError } = await supabase.from("story_scores").upsert(rows, {
           onConflict: "story_id,tag",

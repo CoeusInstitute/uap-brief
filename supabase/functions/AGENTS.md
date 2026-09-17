@@ -42,4 +42,5 @@ under `Local Contracts` only.
 
 - 2026-09-16: `complete_enrichment_item` backs out the claim increment on `released_time_budget` releases (migration `20260916171500_p7_release_attempts_fix`). Do not reintroduce an attempts increment that survives a time-budget release: rows claimed but never reached must stay claimable.
 - 2026-09-16: `validateModel`'s person-name gate includes the candidate snippet in its haystack (title + outlet + url + snippet). Do not narrow it back to title/outlet/url only: aggregate coverage ("House approves amendment", "NASA announces study team") legitimately involves the person without re-printing their name in the headline, and the model already approved those rows. Second gate stays (model keep + name evidence required).
+- 2026-09-17: `score-stories` is fail-soft per dimension - a tag the model declines (no score AND no rationale) is SKIPPED, never fatal; only `no_scorable_tags` (nothing scorable) fails a story. Do not reintroduce a hard `empty_rationale` throw; declined dimensions are normal model behavior and previously killed ~13 otherwise-recoverable stories.
 
