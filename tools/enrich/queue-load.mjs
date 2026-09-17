@@ -28,8 +28,15 @@ for (const file of files) {
   const personId = payload.person_id || file.replace(/\.json$/, "");
   if (args.ids.length && !args.ids.includes(personId)) continue;
   if (args.wave && payload.wave && payload.wave !== args.wave) continue;
+  const cleanStr = (s) =>
+    typeof s === "string"
+      ? s
+          .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, " ")
+          .replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, "")
+      : s;
+  const cleanRow = (row) => Object.fromEntries(Object.entries(row).map(([k, v]) => [k, cleanStr(v)]));
   const candidates = (payload.candidates ?? [])
-    .map((row) => ({ ...row, url: canonicalizeUrl(row.url) }))
+    .map((row) => ({ ...cleanRow(row), url: canonicalizeUrl(cleanStr(row.url)) }))
     .filter((row) => row.url);
   const { data: existing, error: readError } = await supabase
     .from("enrichment_queue")
@@ -64,7 +71,10 @@ for (const file of files) {
     },
     { onConflict: "person_id" },
   );
-  if (error) throw error;
+  if (error) {
+    console.log(`ERR ${personId}: ${error.message} (skipped, load continues)`);
+    continue;
+  }
   markCollector(state, personId, "queued", {
     queued: true,
     candidates: combined.length,
