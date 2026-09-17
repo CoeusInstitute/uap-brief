@@ -18,7 +18,7 @@ from graph_edges;
 | kind | edge type (see below) |
 | weight | multiplicity where meaningful (shared episodes/stories), else 1 |
 
-### Edge kinds (as of 2026-09-17: 7,525 edges total, ~0.8s full scan)
+### Edge kinds (as of 2026-09-17: 8,597+ edges total, ~1.3s full scan)
 
 | kind | direction | source tables | grows when |
 |---|---|---|---|
@@ -26,7 +26,8 @@ from graph_edges;
 | `guest` | person → episode | `episodes.guests` (person-matched jsonb) | new episodes / guest matching |
 | `co_appearance` | person ↔ person | `appearances` sharing a `source_url` (weight = shared episodes) | more appearances |
 | `co_story` | person ↔ person | `story_entities` sharing a story (weight = shared stories) | more stories/entities |
-| `affiliation` | person → organization | `people.affiliations` strings matched via `org_aliases` | new people, new affiliations, **new orgs/aliases minted** |
+| `co_show` | person ↔ person | both appeared on the same podcast at least twice (weight = shared shows; hub-show singleton pairs excluded as noise) | more appearances |
+| `affiliation` | person → organization | `people.affiliations` strings matched via `org_aliases` (accent-aware normalizer v3) | new people, new affiliations, **new orgs/aliases minted** |
 | `story_entity` | story → person/org/podcast | `story_entities` | news pipeline writes |
 | `episode` | podcast → episode | `episodes` | feed harvesting |
 | `host` | podcast → person | `podcasts.host_names` matched via `person_name_norm` | new podcasts / better aliases |
@@ -53,3 +54,4 @@ from graph_edges;
 select kind, count(*) from graph_edges group by 1 order by 2 desc;
 select count(*) from org_mint_candidates;   -- curation backlog (was 860 after first pass)
 ```
+
