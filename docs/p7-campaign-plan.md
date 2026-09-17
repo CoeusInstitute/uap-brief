@@ -121,4 +121,8 @@ No fabricated URLs/dates/outlets; blanks stay blank; score nothing; label no one
 - Person<->person: co_story 717 (75 stories), co_appearance 214 (45 shared episode URLs).
 - Podcast->host: 51 matched hosts (person_name_norm); guest->episode: 1,954.
 - Curation queue remains: org_mint_candidates (860 normalized strings) for future minting; procedure documented in docs/graph-layer.md.
+## Post-campaign quality passes (2026-09-17)
+- Source-type classification: 253 `other` rows reclassified by domain rules (podcast directories, reference wikis -> archive, skeptical press -> mainstream). Remaining 477 are genuinely miscellaneous (blogs, forums, commerce listings).
+- Links-phase re-run for the majors + final-wave lists (the two waves whose links phase crashed mid-run on upstream timeouts); state-skip keeps it idempotent, then queue-load merges anything new.
+- Live-layer support: story match backlog draining via cron (~40/hr); scoring stragglers requeued; person_aliases +206 normalized forms for matcher recall.
 
