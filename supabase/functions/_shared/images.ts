@@ -35,6 +35,28 @@ export async function storeStoryImage(
     return null;
   }
 
+  return uploadStoryImage(supabase, storyId, new Uint8Array(bytes), contentType);
+}
+
+/** Stores already-downloaded image bytes. Returns the public URL, or null when the bytes are unusable. */
+export async function storeStoryImageBytes(
+  supabase: SupabaseClient,
+  storyId: string,
+  bytes: Uint8Array,
+  contentType: string,
+): Promise<string | null> {
+  const type = contentType.split(";")[0].trim().toLowerCase();
+  if (!ALLOWED_TYPES.has(type)) return null;
+  if (bytes.byteLength === 0 || bytes.byteLength > MAX_BYTES) return null;
+  return uploadStoryImage(supabase, storyId, bytes, type);
+}
+
+async function uploadStoryImage(
+  supabase: SupabaseClient,
+  storyId: string,
+  bytes: Uint8Array,
+  contentType: string,
+): Promise<string | null> {
   const hash = await crypto.subtle.digest("SHA-256", bytes);
   const hashHex = [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, "0")).join("");
   const path = `${storyId}/${hashHex.slice(0, 16)}${extensionFor(contentType)}`;

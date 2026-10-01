@@ -436,3 +436,6 @@ verify_jwt = false
 
 [functions.translate-stories]
 verify_jwt = false
+
+[functions.illustrate-stories]
+verify_jwt = false

@@ -133,8 +133,9 @@ Deno.serve(async (req) => {
           .in("tag", [...RETIRED_TAGS]);
         if (retireError) throw retireError;
 
+        const attemptedImage = story.image_status !== "stored";
         let image = { url: null as string | null, status: story.image_status as string };
-        if (story.image_status !== "stored") {
+        if (attemptedImage) {
           const stored = await storeImage(supabase, story.story_id, page.ogImage);
           image = stored;
           if (stored.status === "stored") imagesStored += 1;
@@ -156,15 +157,14 @@ Deno.serve(async (req) => {
           !inplace &&
           story.translation_status === "translated" &&
           Boolean(story.summary?.trim());
+        const imagePatch = imageColumns(await currentImage(supabase, story.story_id), attemptedImage, image);
         await supabase
           .from("stories")
           .update({
             status: review ? "review" : "ready",
             excerpt,
             summary: keepTranslatedBrief ? story.summary : modelOut.summary,
-            ...(story.image_status === "stored"
-              ? {}
-              : { image_url: image.url, image_status: image.status }),
+            ...imagePatch,
             form: allowedForm(modelOut.form),
             locked_at: null,
             locked_by: null,
@@ -287,6 +287,7 @@ async function backfillBriefs(
   }
   for (const story of (data ?? []) as StoryRow[]) {
     const patch: Record<string, unknown> = { locked_at: null, locked_by: null, updated_at: new Date().toISOString() };
+    let imageResult: { url: string | null; status: string } | null = null;
     try {
       const sourceRow = await loadSource(supabase, story.source_id);
       const needsImage = story.image_status === "pending";
@@ -302,13 +303,15 @@ async function backfillBriefs(
         briefed += 1;
       }
       if (needsImage) {
-        const image = await storeImage(supabase, story.story_id, page.ogImage);
-        patch.image_url = image.url;
-        patch.image_status = image.status;
-        if (image.status === "stored") imagesStored += 1;
+        imageResult = await storeImage(supabase, story.story_id, page.ogImage);
+        if (imageResult.status === "stored") imagesStored += 1;
       }
     } catch (cause) {
       errors.push({ story_id: story.story_id, backfill: cause instanceof Error ? cause.message : String(cause) });
+      imageResult = null;
+    }
+    if (imageResult) {
+      Object.assign(patch, imageColumns(await currentImage(supabase, story.story_id), true, imageResult));
     }
     await supabase.from("stories").update(patch).eq("story_id", story.story_id);
   }
@@ -383,6 +386,35 @@ async function storeImage(
   if (!ogImage) return { url: null, status: "placeholder" };
   const url = await storeStoryImage(supabase, storyId, ogImage);
   return url ? { url, status: "stored" } : { url: null, status: "placeholder" };
+}
+
+type ImageState = { image_status: string; image_origin: string | null };
+
+async function currentImage(supabase: Supabase, storyId: string): Promise<ImageState | null> {
+  const { data, error } = await supabase
+    .from("stories")
+    .select("image_status, image_origin")
+    .eq("story_id", storyId)
+    .single();
+  if (error || !data) return null;
+  return {
+    image_status: String(data.image_status ?? "pending"),
+    image_origin: typeof data.image_origin === "string" ? data.image_origin : null,
+  };
+}
+
+/** Omits image columns when a generated file or a stored photo landed after this tick claimed the row. */
+function imageColumns(
+  current: ImageState | null,
+  attempted: boolean,
+  result: { url: string | null; status: string },
+): Record<string, unknown> {
+  if (!attempted || !current) return {};
+  if (current.image_status === "stored" || current.image_origin === "generated") return {};
+  if (result.status === "stored" && result.url) {
+    return { image_url: result.url, image_status: "stored", image_origin: "fetched" };
+  }
+  return { image_url: null, image_status: "placeholder", image_origin: null };
 }
 
 function allowedForm(value: string): "news" | "analysis" | "opinion" | "press_release" | "podcast" | "video" {

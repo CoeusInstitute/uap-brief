@@ -122,6 +122,8 @@ export type Story = {
   summary: string | null;
   image_url: string | null;
   image_status: string | null;
+  /** `generated` is an illustration. Null and `fetched` are the article image. */
+  image_origin: string | null;
   form: string | null;
   source_name: string | null;
   homepage_url: string | null;

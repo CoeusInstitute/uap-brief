@@ -5,15 +5,16 @@ export default function PageFrame({
   aside,
 }: {
   children: React.ReactNode;
-  layout?: "single" | "main-aside" | "wide";
+  layout?: "single" | "main-aside" | "wide" | "front";
   header?: React.ReactNode;
   aside?: React.ReactNode;
 }) {
+  const split = layout === "main-aside" || layout === "front";
   return (
     <main className="page-shell">
       {header ? <div className="page-shell__header">{header}</div> : null}
-      <div className="page-frame" data-layout={layout}>
-        {layout === "main-aside" ? (
+      <div className="page-frame" data-layout={layout} data-aside={aside ? "true" : undefined}>
+        {split ? (
           <>
             <div className="page-frame__main">{children}</div>
             {aside ? <aside className="page-frame__aside">{aside}</aside> : null}

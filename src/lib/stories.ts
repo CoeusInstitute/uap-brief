@@ -6,7 +6,7 @@ import { isScoreTag, type ScoreTag } from "@/lib/types";
 type Row = Record<string, unknown>;
 
 const STORY_COLUMNS =
-  "story_id, canonical_url, title, published_at, excerpt, summary, image_url, image_status, form, source_name, homepage_url, cluster_id, scores, entities";
+  "story_id, canonical_url, title, published_at, excerpt, summary, image_url, image_status, image_origin, form, source_name, homepage_url, cluster_id, scores, entities";
 
 function asString(value: unknown): string {
   return typeof value === "string" ? value : "";
@@ -73,6 +73,7 @@ function mapStory(row: Row): Story {
     summary: asNullableString(row.summary),
     image_url: asNullableString(row.image_url),
     image_status: asNullableString(row.image_status),
+    image_origin: asNullableString(row.image_origin),
     form: asNullableString(row.form),
     source_name: asNullableString(row.source_name),
     homepage_url: asNullableString(row.homepage_url),

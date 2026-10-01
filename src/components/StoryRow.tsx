@@ -1,14 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AssessmentLine from "@/components/AssessmentLine";
-import type { StoryCard } from "@/lib/feed";
-
-function formatStoryDate(value: string | null | undefined): string | null {
-  if (!value) return null;
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return null;
-  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" }).format(date);
-}
+import { formatStoryDate, type StoryCard } from "@/lib/feed";
 
 export function LeadSlot({ story }: { story?: StoryCard | null }) {
   if (!story) return null;
@@ -29,6 +22,7 @@ function StoryMedia({ story, featured }: { story: StoryCard; featured: boolean }
         sizes={featured ? "(min-width: 60rem) 76rem, 100vw" : "(min-width: 40rem) 18rem, 100vw"}
         priority={featured}
       />
+      {story.illustrated ? <span className="story-row__illustration">Illustration</span> : null}
     </Link>
   );
 }

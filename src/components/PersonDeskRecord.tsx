@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useState } from "react";
 import { getPersonRecord } from "@/app/people/actions";
 import { DetailItem, DetailList } from "@/components/DetailList";
+import { DossierBlock } from "@/components/DossierBlock";
 import type { DeskWindowOpen } from "@/components/DeskWindows";
 import { useDeskWindowsOptional } from "@/components/DeskWindows";
 import { Prose } from "@/components/Prose";
@@ -39,35 +40,6 @@ function personIdFromHref(href?: string): string | null {
 function nextIndex() {
   let n = 0;
   return () => String(++n).padStart(2, "0");
-}
-
-function DossierBlock({
-  index,
-  title,
-  extra,
-  children,
-}: {
-  index: string;
-  title: string;
-  extra?: ReactNode;
-  children: ReactNode;
-}) {
-  const headingId = `${title.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-desk`;
-  return (
-    <section className="dossier-window__block" aria-labelledby={headingId}>
-      <header className="dossier-window__index">
-        <span className="dossier-window__n" aria-hidden="true">
-          {index}
-        </span>
-        <h3 className="dossier-window__heading" id={headingId}>
-          {title}
-        </h3>
-        <span className="dossier-window__hairline" aria-hidden="true" />
-        {extra}
-      </header>
-      <div className="dossier-window__panel">{children}</div>
-    </section>
-  );
 }
 
 function FactBlock({ index, title, items }: { index: string; title: string; items: FactItem[] }) {
